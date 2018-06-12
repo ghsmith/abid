@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet type="text/xsl" href="antibody_report.xsl"?>
+
+<sample>
+    <hospital>
+        <hospitalLoc>Grady</hospitalLoc>
+    </hospital>
+    <mrn>2345678</mrn>
+    <lastName>Doe</lastName>
+    <firstName>John</firstName>
+    <collectionDate>06/07/2018</collectionDate>
+    <genders>
+        <gender>Male</gender>
+    </genders>
+    <age>27</age>
+    <bbSummaries>
+        <bbSummary>Complex</bbSummary>
+    </bbSummaries>    
+    <questionSCD>
+        <SCD>yes</SCD>
+    </questionSCD>
+    <aboRhType>
+        <aboType>O</aboType>
+        <rhType>Rh-negative</rhType>
+    </aboRhType>
+    <antibodyScreen>positive</antibodyScreen>
+    <antibodies>
+        <antibody>anti-D</antibody>
+        <!--antibody>anti-C</antibody>
+        <antibody>anti-E</antibody>
+        <antibody>anti-K</antibody-->
+    </antibodies>
+    <otherAllo>
+        <allo>ruled out</allo>
+    </otherAllo>
+    <resultDAT>
+        <DAT>negative</DAT>
+    </resultDAT>
+    <rhogam>no</rhogam>
+    <resultEluate>
+        <eluate></eluate>
+    </resultEluate>
+    <antibodiesEluate>
+        <eluateAntibody></eluateAntibody>
+    </antibodiesEluate>
+    <antigenNeg>
+        <antigen>C</antigen>
+        <antigen>E</antigen>
+        <antigen>K</antigen>
+    </antigenNeg>
+    <phenotypeSCD>
+        <antigenSCD>C-negative</antigenSCD>
+        <antigenSCD>c-positive</antigenSCD>
+        <antigenSCD>E-negative</antigenSCD>
+        <antigenSCD>e-positive</antigenSCD>
+        <antigenSCD>K-negative</antigenSCD>
+        <antigenSCD>Fy(a)-negative</antigenSCD>
+        <antigenSCD>Fy(b)-positive</antigenSCD>
+        <antigenSCD>Jk(a)-positive</antigenSCD>
+        <antigenSCD>Jk(b)-positive</antigenSCD>
+        <antigenSCD>S-negative</antigenSCD>
+        <antigenSCD>s-positive</antigenSCD>
+    </phenotypeSCD>
+    <residentName>Dr. Wooten</residentName>
+</sample>

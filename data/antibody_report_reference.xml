@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<reference>
+    
+    <hospital>
+        <hospitalLoc selected="false">Emory</hospitalLoc>
+        <hospitalLoc selected="false">Grady</hospitalLoc>
+    </hospital>
+    <genders>
+        <gender selected="false">Female</gender>
+        <gender selected="false">Male</gender>
+    </genders>
+    <bbSummaries>
+        <bbSummary selected="false">Routine</bbSummary>
+        <bbSummary selected="false">Complex</bbSummary>
+        <bbSummary selected="false">Highly complex</bbSummary>
+    </bbSummaries>
+    <questionSCD>
+        <SCD selected="false">yes</SCD>
+        <SCD selected="false">no</SCD>
+    </questionSCD>
+    <aboRhType>
+        <aboType>
+            <abo selected="false">A</abo>
+            <abo selected="false">B</abo>
+            <abo selected="false">AB</abo>
+            <abo selected="false">O</abo>
+        </aboType>
+        <rhType>
+            <rh selected="false">Rh-positive</rh>
+            <rh selected="false">Rh-negative</rh>
+        </rhType>
+    </aboRhType>
+    <antibodyScreen>
+        <screen selected="false">positive</screen>
+        <screen selected="false">negative</screen>
+    </antibodyScreen>
+    <antibodies>
+        <antibody sickleCell="false" selected="false">warm autoantibody</antibody>
+        <antibody sickleCell="false" selected="false">HTLA</antibody>
+        <antibody sickleCell="false" selected="false">anti-D</antibody>
+        <antibody sickleCell="true" selected="false">anti-C</antibody>
+        <antibody sickleCell="true" selected="false">anti-c</antibody>
+        <antibody sickleCell="true" selected="false">anti-E</antibody>
+        <antibody sickleCell="true" selected="false">anti-e</antibody>
+        <antibody sickleCell="true" selected="false">anti-K</antibody>
+        <antibody sickleCell="false" selected="false">anti-k</antibody>
+        <antibody sickleCell="false" selected="false">anti-Kp(b)</antibody>
+        <antibody sickleCell="false" selected="false">anti-Js(b)</antibody>
+        <antibody sickleCell="true" selected="false">anti-Fy(a)</antibody>
+        <antibody sickleCell="true" selected="false">anti-Fy(b)</antibody>
+        <antibody sickleCell="true" selected="false">anti-Jk(a)</antibody>
+        <antibody sickleCell="true" selected="false">anti-Jk(b)</antibody>
+        <antibody sickleCell="false" selected="false">anti-M</antibody>
+        <antibody sickleCell="true" selected="false">anti-S</antibody>
+        <antibody sickleCell="false" selected="false">anti-s</antibody>
+        <antibody sickleCell="false" selected="false">anti-U</antibody>
+        <antibody sickleCell="false" selected="false">anti-Lu(b)</antibody>
+        <antibody sickleCell="false" selected="false">anti-hr(B)</antibody>
+        <antibody sickleCell="false" selected="false">anti-hr(S)</antibody>
+    </antibodies>
+    <otherAllo>
+        <allo selected="false">ruled out</allo>
+        <allo selected="false">unable to be ruled out</allo>
+        <allo selected="false">ruled out using a LISS IAT screen</allo>
+    </otherAllo>
+    <resultDAT>
+        <DAT selected="false">negative</DAT>
+        <DAT selected="false">positive for IgG</DAT>
+        <DAT selected="false">positive for complement</DAT>
+        <DAT selected="false">positive for IgG and complement</DAT>
+    </resultDAT>
+    <rhogam>
+        <rhogamQ selected="false">yes</rhogamQ>
+        <rhogamQ selected="false">no</rhogamQ>
+    </rhogam>
+    <resultEluate>
+        <eluate selected="false">not performed</eluate>
+        <eluate selected="false">negative</eluate>
+        <eluate selected="false">positive for</eluate>
+        <eluate selected="false">panagglutination</eluate>
+    </resultEluate>
+    <!--antibodiesEluate>
+        <eluateAntibody></eluateAntibody>
+    </antibodiesEluate-->
+    <antigenNeg>
+        <antigen selected="false">C</antigen>
+        <antigen selected="false">c</antigen>
+        <antigen selected="false">E</antigen>
+        <antigen selected="false">e</antigen>
+        <antigen selected="false">K</antigen>
+        <antigen selected="false">k</antigen>
+        <antigen selected="false">Kp(b)</antigen>
+        <antigen selected="false">Js(b)</antigen>
+        <antigen selected="false">Fy(a)</antigen>
+        <antigen selected="false">Fy(b)</antigen>
+        <antigen selected="false">Jk(a)</antigen>
+        <antigen selected="false">Jk(b)</antigen>
+        <antigen selected="false">M</antigen>
+        <antigen selected="false">S</antigen>
+        <antigen selected="false">s</antigen>
+        <antigen selected="false">U</antigen>
+        <antigen selected="false">Lu(b)</antigen>
+        <antigen selected="false">hr(B)</antigen>
+        <antigen selected="false">hr(S)</antigen>
+    </antigenNeg>
+    <phenotypeSCD>
+        <antigenSCD selected="false">C-positive</antigenSCD>
+        <antigenSCD selected="false">C-negative</antigenSCD>
+        <antigenSCD selected="false">c-positive</antigenSCD>
+        <antigenSCD selected="false">c-negative</antigenSCD>
+        <antigenSCD selected="false">E-positive</antigenSCD>
+        <antigenSCD selected="false">E-negative</antigenSCD>
+        <antigenSCD selected="false">e-positive</antigenSCD>
+        <antigenSCD selected="false">e-negative</antigenSCD>
+        <antigenSCD selected="false">K-positive</antigenSCD>
+        <antigenSCD selected="false">K-negative</antigenSCD>
+        <antigenSCD selected="false">Fy(a)-positive</antigenSCD>
+        <antigenSCD selected="false">Fy(a)-negative</antigenSCD>
+        <antigenSCD selected="false">Fy(b)-positive</antigenSCD>
+        <antigenSCD selected="false">Fy(b)-negative</antigenSCD>
+        <antigenSCD selected="false">Jk(a)-positive</antigenSCD>
+        <antigenSCD selected="false">Jk(a)-negative</antigenSCD>
+        <antigenSCD selected="false">Jk(b)-positive</antigenSCD>
+        <antigenSCD selected="false">Jk(b)-negative</antigenSCD>
+        <antigenSCD selected="false">S-positive</antigenSCD>
+        <antigenSCD selected="false">S-negative</antigenSCD>
+        <antigenSCD selected="false">s-positive</antigenSCD>
+        <antigenSCD selected="false">s-negative</antigenSCD>
+    </phenotypeSCD>
+    <!--antigenFreq>
+        <antigenFreqNeg>D</antigenFreqNeg>
+        <antigenFreqNeg>C</antigenFreqNeg>
+        <antigenFreqNeg>c</antigenFreqNeg>
+        <antigenFreqNeg>E</antigenFreqNeg>
+        <antigenFreqNeg>e</antigenFreqNeg>
+        <antigenFreqNeg>K</antigenFreqNeg>
+        <antigenFreqNeg>k</antigenFreqNeg>
+        <antigenFreqNeg>Kp(b)</antigenFreqNeg>
+        <antigenFreqNeg>Js(b)</antigenFreqNeg>
+        <antigenFreqNeg>Fy(a)</antigenFreqNeg>
+        <antigenFreqNeg>Fy(b)</antigenFreqNeg>
+        <antigenFreqNeg>Jk(a)</antigenFreqNeg>
+        <antigenFreqNeg>Jk(b)</antigenFreqNeg>
+        <antigenFreqNeg>M</antigenFreqNeg>
+        <antigenFreqNeg>S</antigenFreqNeg>
+        <antigenFreqNeg>s</antigenFreqNeg>
+        <antigenFreqNeg>U</antigenFreqNeg>
+        <antigenFreqNeg>Lu(b)</antigenFreqNeg>
+        <antigenFreqNeg>hr(B)</antigenFreqNeg>
+        <antigenFreqNeg>hr(S)</antigenFreqNeg>
+    </antigenFreq-->
+    
+</reference>
