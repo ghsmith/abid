@@ -4,7 +4,7 @@
 <html> 
 
 <head> 
-    <title>Antibody ID</title> 
+    <title>Antibody ID [alpha 20180612]</title> 
     <!--link rel="shortcut icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" /-->
     <!--meta name="apple-mobile-web-app-capable" content="yes" /-->
     <!--link rel="apple-touch-icon" href="<%=request.getContextPath()%>/apple-touch-icon.png" /-->
@@ -18,10 +18,11 @@
     
     <div id="welcome" data-role="page">
         <div data-role="header">
-            <h1>Antibody ID</h1>
+            <h1>Antibody ID [alpha 20180612]</h1>
         </div>
         <div role="main" class="ui-content">
-            <p>Caveat about clinically using this.</p>
+            <p>Caveat about clinically using this. Background information.
+            Friends, Romans, Countrymen! Lend me your ears. We have come to bury Caesar, not to praise him.</p>
             <p><a class="button-agree" href="#currentNode" data-role="button">Acknowledge &amp; continue</a></p>
         </div>
         <div>
@@ -31,7 +32,7 @@
 	
     <div id="currentNode" data-role="page">
         <div data-role="header">
-            <h1>Antibody ID</h1>
+            <h1>Antibody ID [alpha 20180612]</h1>
         </div>
         <div data-role="tabs" style="padding: 0px">
 
@@ -47,19 +48,13 @@
                 <div id="responseItems">
                 </div>
                 <p>&nbsp;</p>
-                <div id="genders" class="responseItem">
-                    <p class="stem"></p>
-                    <p class="options"></p>
-                </div>
-                <p>&nbsp;</p>
                 <p><a class="button-reset" href="#" data-role="button">Reset all responses</a></p>
             </div>
 
             <div id="report" class="ui-content">
-
-                <div id="reportBody">
+                <div id="reportBody" style="border: 1px solid black; padding: 5px; background-color: white;">
                 </div>
-                
+                <a href="<%=request.getContextPath()%>/SampleXMLServlet" target="_blank">[XML version of this report]</a>
             </div>
             
         </div>
@@ -103,7 +98,7 @@
             cache: false,
             dataType: "json",
             contentType: "application/json",
-            url: "/abid/resources/reference" + (reset ? "/reset" : ""),
+            url: "<%=request.getContextPath()%>/resources/reference" + (reset ? "/reset" : ""),
             success: function(data) {
                 reference = data;
                 renderResponseItems();
@@ -121,7 +116,7 @@
             cache: false,
             dataType: "json",
             contentType: "application/json",
-            url: "/abid/resources/reference",
+            url: "<%=request.getContextPath()%>/resources/reference",
             data: JSON.stringify(reference),
             success: function() {
             },
@@ -166,9 +161,17 @@
         $("#currentNode .button-reset").bind("click", getReferenceReset);
         
         $("#currentNode .report").bind("click", function() {
-
+            $("#reportBody").load("<%=request.getContextPath()%>/SampleXLSTServlet", function() {
+                $("#reportBody").trigger("create");
+            });
         });
-        
+
+        // there must be a better way to persist tab state...
+        $("#currentNode .tabBar a").bind("click", function() {
+            $("#currentNode .tabBar a").removeClass("ui-state-persist");
+            $(this).addClass("ui-state-persist");
+        });
+
     });
 
 </script>

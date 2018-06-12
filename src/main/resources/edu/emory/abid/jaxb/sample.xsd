@@ -11,7 +11,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="mrn" type="xs:unsignedInt" />
+        <xs:element name="mrn" type="xs:string" />
         <xs:element name="lastName" type="xs:string" />
         <xs:element name="firstName" type="xs:string" />
         <xs:element name="collectionDate" type="xs:string" />
@@ -22,7 +22,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="age" type="xs:unsignedByte" />
+        <xs:element name="age" type="xs:string" />
         <xs:element name="bbSummaries">
           <xs:complexType>
             <xs:sequence>
@@ -49,14 +49,14 @@
         <xs:element name="antibodies">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="antibody" type="xs:string" />
+              <xs:element maxOccurs="unbounded" name="antibody" type="xs:string" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
         <xs:element name="otherAllo">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="allo" type="xs:string" />
+              <xs:element maxOccurs="unbounded" name="allo" type="xs:string" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
