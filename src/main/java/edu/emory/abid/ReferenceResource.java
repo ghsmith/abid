@@ -30,6 +30,7 @@ public class ReferenceResource {
         Reference reference = (Reference)req.getSession().getAttribute("reference");
         if(reference == null) {
             reference = referenceFinder.getReference();
+            req.getSession().setAttribute("reference", reference);
         }
         return reference;
     }
@@ -42,7 +43,6 @@ public class ReferenceResource {
         return getJson(req);
     }
 
-    
     @PUT
     @Consumes("application/json")
     public void setJson(@Context HttpServletRequest req, Reference reference) {

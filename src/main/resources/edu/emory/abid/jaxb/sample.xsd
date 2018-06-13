@@ -71,14 +71,14 @@
         <xs:element name="resultEluate">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="eluate" />
+              <xs:element name="eluate" type="xs:string" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
         <xs:element name="antibodiesEluate">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="eluateAntibody" />
+              <xs:element name="eluateAntibody" type="xs:string" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

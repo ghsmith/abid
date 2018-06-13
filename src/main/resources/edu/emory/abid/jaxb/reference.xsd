@@ -4,6 +4,12 @@
   <xs:element name="reference">
     <xs:complexType>
       <xs:sequence>
+        <xs:element name="residentName" type="xs:string" />
+        <xs:element name="mrn" type="xs:string" />
+        <xs:element name="lastName" type="xs:string" />
+        <xs:element name="firstName" type="xs:string" />
+        <xs:element name="age" type="xs:string" />
+        <xs:element name="collectionDate" type="xs:string" />
         <xs:element name="hospital">
           <xs:complexType>
             <xs:sequence>

@@ -8,10 +8,14 @@
     <!--link rel="shortcut icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" /-->
     <!--meta name="apple-mobile-web-app-capable" content="yes" /-->
     <!--link rel="apple-touch-icon" href="<%=request.getContextPath()%>/apple-touch-icon.png" /-->
-    <meta name="viewport" content="width=device-width, initial-scale=1"> 
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.css" />
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/> 
+    <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <link rel="stylesheet" href="//cdn.rawgit.com/arschmitz/jquery-mobile-datepicker-wrapper/v0.1.1/jquery.mobile.datepicker.css">
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+    <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="//cdn.rawgit.com/jquery/jquery-ui/1.10.4/ui/jquery.ui.datepicker.js"></script>
+    <script id="mobile-datepicker" src="//cdn.rawgit.com/arschmitz/jquery-mobile-datepicker-wrapper/v0.1.1/jquery.mobile.datepicker.js"></script>
 </head>
 
 <body>
@@ -54,7 +58,7 @@
             <div id="report" class="ui-content">
                 <div id="reportBody" style="border: 1px solid black; padding: 5px; background-color: white;">
                 </div>
-                <a href="<%=request.getContextPath()%>/SampleXMLServlet" target="_blank">[XML version of this report]</a>
+                <a href="<%=request.getContextPath()%>/sampleXMLServlet" target="_blank">[XML version of this report]</a>
             </div>
             
         </div>
@@ -69,20 +73,26 @@
 <script type="text/javascript">
 
     var responseItemElements = [
-        "hospital.hospitalLoc",
-        "genders.gender",
-        "bbSummaries.bbSummary",
-        "questionSCD.scd",
-        "aboRhType.aboType.abo",
-        "aboRhType.rhType.rh",
-        "antibodyScreen.screen",
-        "antibodies.antibody",
-        "otherAllo.allo",
-        "resultDAT.dat",
-        "rhogam.rhogamQ",
-        "resultEluate.eluate",
-        "antigenNeg.antigen",
-        "phenotypeSCD.antigenSCD",
+        {name:"residentName", type:"text"},
+        {name:"mrn", type:"text"},
+        {name:"lastName", type:"text"},
+        {name:"firstName", type:"text"},
+        {name:"age", type:"text"},
+        {name:"collectionDate", type:"date"},
+        {name:"hospital.hospitalLoc", type:"radio"},
+        {name:"genders.gender", type:"radio"},
+        {name:"bbSummaries.bbSummary", type:"radio"},
+        {name:"questionSCD.scd", type:"radio"},
+        {name:"aboRhType.aboType.abo", type:"radio"},
+        {name:"aboRhType.rhType.rh", type:"radio"},
+        {name:"antibodyScreen.screen", type:"radio"},
+        {name:"antibodies.antibody", type:"checkbox"},
+        {name:"otherAllo.allo", type:"radio"},
+        {name:"resultDAT.dat", type:"radio"},
+        {name:"rhogam.rhogamQ", type:"radio"},
+        {name:"resultEluate.eluate", type:"radio"},
+        {name:"antigenNeg.antigen", type:"checkbox"},
+        {name:"phenotypeSCD.antigenSCD", type:"checkbox"}
         
     ];
 
@@ -130,18 +140,33 @@
         
         $("#responseItems").html("");
         for(var x = 0; x < responseItemElements.length; x++) {
-            var values = eval("reference." + responseItemElements[x]);
-            $("#responseItems").append("<p id='ri" + x + "stem' class='stem'>" + responseItemElements[x] + "</p>")
-            $("#responseItems").append("<p id='ri" + x + "options' class='options'></p>");
-            $("#ri" + x + "options").append("<fieldset data-role='controlgroup'></fieldset>");
-            for(var y = 0; y < values.length; y++) {
-                $("#ri" + x + "options fieldset").append("<input type='checkbox' id='checkbox-" + y + "' data-binding='reference." + responseItemElements[x] + "[" + y + "]" + "' " + (values[y].selected ? "checked = 'true'" : "") + "/>");
-                $("#ri" + x + "options fieldset").append("<label for='checkbox-" + y + "'>" + values[y].value + "</label>");            
+            if(responseItemElements[x].type == "radio" || responseItemElements[x].type == "checkbox") {
+                var values = eval("reference." + responseItemElements[x].name);
+                $("#responseItems").append("<p id='ri" + x + "stem' class='stem'>" + responseItemElements[x].name + "</p>")
+                $("#responseItems").append("<p id='ri" + x + "options' class='options'></p>");
+                $("#ri" + x + "options").append("<fieldset data-role='controlgroup'></fieldset>");
+                for(var y = 0; y < values.length; y++) {
+                    $("#ri" + x + "options fieldset").append("<input type='" + responseItemElements[x].type + "' name='ri" + x + "' id='ri" + x + "-" + y + "' data-binding='reference." + responseItemElements[x].name + "[" + y + "]" + "' " + (values[y].selected ? "checked = 'true'" : "") + "/>");
+                    $("#ri" + x + "options fieldset").append("<label for='ri" + x + "-" + y + "'>" + values[y].value + "</label>");            
+                }
             }
+            else if(responseItemElements[x].type == "text") {
+                var value = eval("reference." + responseItemElements[x].name);
+                $("#responseItems").append("<p id='ri" + x + "stem' class='stem'>" + responseItemElements[x].name + "</p>")
+                $("#responseItems").append("<p id='ri" + x + "options' class='options'></p>");
+                $("#ri" + x + "options").append("<input type='text' data-clear-btn='true' id='ri" + x +  "' data-binding='reference." + responseItemElements[x].name + "' value='" + (value != null ? value : "") + "'>");
+            }    
+            else if(responseItemElements[x].type == "date") {
+                var value = eval("reference." + responseItemElements[x].name);
+                $("#responseItems").append("<p id='ri" + x + "stem' class='stem'>" + responseItemElements[x].name + "</p>")
+                $("#responseItems").append("<p id='ri" + x + "options' class='options'></p>");
+                //$("#ri" + x + "options").append("<input type='text' data-role='date' data-clear-btn='true' id='ri" + x +  "' data-binding='reference." + responseItemElements[x].name + "' value='" + (value != null ? value : "") + "'>");
+                $("#ri" + x + "options").append("<input id='datepicker' type='text' data-role='date' data-clear-btn='true' data-inline='true' id='ri" + x +  "' data-binding='reference." + responseItemElements[x].name + "' value='" + (value != null ? value : "") + "'>");
+            }    
         }
-        $("#currentNode .options").trigger("create");
+        $("#responseItems .options").trigger("create");
 
-        $("#responseItems input[type='checkbox']").change(function(e) {
+        $("#responseItems input[type='radio'], #responseItems input[type='checkbox']").change(function(e) {
             var value = eval($(this).attr("data-binding"));
             if(this.checked) {
                 value.selected = true;
@@ -152,16 +177,27 @@
             setReference();
         });
 
+        $("#responseItems input[type='text']").change(function(e) {
+            eval($(this).attr("data-binding") + " = '" + $(this).val() + "'");
+            setReference();
+        });
+
+        // need to fix this...
+        $('#datepicker').on("input change", function (e) {
+            reference.collectionDate = e.target.value;
+            setReference();
+        });
+
     }
 
     $("#currentNode").bind("pageinit", function () {
-        
+
         getReference();
         
         $("#currentNode .button-reset").bind("click", getReferenceReset);
         
         $("#currentNode .report").bind("click", function() {
-            $("#reportBody").load("<%=request.getContextPath()%>/SampleXLSTServlet", function() {
+            $("#reportBody").load("<%=request.getContextPath()%>/sampleXLSTServlet", function() {
                 $("#reportBody").trigger("create");
             });
         });
