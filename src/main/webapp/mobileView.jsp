@@ -73,7 +73,7 @@
         {name:"mrn", type:"text"},
         {name:"lastName", type:"text"},
         {name:"firstName", type:"text"},
-        {name:"age", type:"text"},
+        {name:"age", type:"number"},
         {name:"collectionDate", type:"date"},
         {name:"hospital.hospitalLoc", type:"radio"},
         {name:"genders.gender", type:"radio"},
@@ -136,27 +136,27 @@
         
         $("#responseItems").html("");
         for(var x = 0; x < responseItemElements.length; x++) {
+            $("<p class='stem'>" + responseItemElements[x].name + "</p>").appendTo("#responseItems");
+            var $options = $("<p class='options'></p>").appendTo("#responseItems");
             if(responseItemElements[x].type == "radio" || responseItemElements[x].type == "checkbox") {
                 var values = eval("reference." + responseItemElements[x].name);
-                $("#responseItems").append("<p id='ri" + x + "stem' class='stem'>" + responseItemElements[x].name + "</p>")
-                $("#responseItems").append("<p id='ri" + x + "options' class='options'></p>");
-                $("#ri" + x + "options").append("<fieldset data-role='controlgroup'></fieldset>");
+                var $fieldset = $("<fieldset data-role='controlgroup'></fieldset>").appendTo($options);
                 for(var y = 0; y < values.length; y++) {
-                    $("#ri" + x + "options fieldset").append("<input type='" + responseItemElements[x].type + "' name='ri" + x + "' id='ri" + x + "-" + y + "' data-binding='reference." + responseItemElements[x].name + "[" + y + "]" + "' " + (values[y].selected ? "checked = 'true'" : "") + "/>");
-                    $("#ri" + x + "options fieldset").append("<label for='ri" + x + "-" + y + "'>" + values[y].value + "</label>");            
+                    $("<input type='" + responseItemElements[x].type + "' name='ri" + x + "' id='ri" + x + "-" + y + "' data-binding='reference." + responseItemElements[x].name + "[" + y + "]" + "' " + (values[y].selected ? "checked = 'true'" : "") + "/>").appendTo($fieldset);
+                    $("<label for='ri" + x + "-" + y + "'>" + values[y].value + "</label>").appendTo($fieldset);
                 }
             }
             else if(responseItemElements[x].type == "text") {
                 var value = eval("reference." + responseItemElements[x].name);
-                $("#responseItems").append("<p id='ri" + x + "stem' class='stem'>" + responseItemElements[x].name + "</p>")
-                $("#responseItems").append("<p id='ri" + x + "options' class='options'></p>");
-                $("#ri" + x + "options").append("<input type='text' data-clear-btn='true' id='ri" + x +  "' data-binding='reference." + responseItemElements[x].name + "' value='" + (value != null ? value : "") + "'>");
+                $("<input type='text' data-clear-btn='true' id='ri" + x +  "' data-binding='reference." + responseItemElements[x].name + "' value='" + (value != null ? value : "") + "'>").appendTo($options);
+            }    
+            else if(responseItemElements[x].type == "number") {
+                var value = eval("reference." + responseItemElements[x].name);
+                $("<input type='number' data-clear-btn='true' id='ri" + x +  "' data-binding='reference." + responseItemElements[x].name + "' value='" + (value != null ? value : "") + "'>").appendTo($options);
             }    
             else if(responseItemElements[x].type == "date") {
                 var value = eval("reference." + responseItemElements[x].name);
-                $("#responseItems").append("<p id='ri" + x + "stem' class='stem'>" + responseItemElements[x].name + "</p>")
-                $("#responseItems").append("<p id='ri" + x + "options' class='options'></p>");
-                $("#ri" + x + "options").append("<input type='date' data-clear-btn='true' id='ri" + x +  "' data-binding='reference." + responseItemElements[x].name + "' value='" + (value != null ? value : "") + "'>");
+                $("<input type='date' data-clear-btn='true' id='ri" + x +  "' data-binding='reference." + responseItemElements[x].name + "' value='" + (value != null ? value : "") + "'>").appendTo($options);
             }    
         }
         
@@ -175,7 +175,7 @@
             setReference();
         });
 
-        $("#responseItems input[type='text'], #responseItems input[type='date']").change(function(e) {
+        $("#responseItems input[type='text'], #responseItems input[type='number'], #responseItems input[type='date']").change(function(e) {
             eval($(this).attr("data-binding") + " = '" + $(this).val() + "'");
             setReference();
         });

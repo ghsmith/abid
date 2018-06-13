@@ -15,7 +15,9 @@ public class SampleFinder {
         SimpleDateFormat sdfOut = new SimpleDateFormat("MM/dd/yyyy");
         
         Sample sample = new Sample();
-        
+
+        // This is also sloppy. I suspect the right way to do this is to do an
+        // XML-to-XML by XSLT.
         sample.setResidentName(reference.getResidentName());
         sample.setMrn(reference.getMrn());
         sample.setLastName(reference.getLastName());
@@ -50,7 +52,12 @@ public class SampleFinder {
         }
         sample.setAntibodies(new Sample.Antibodies());
         for(Reference.Antibodies.Antibody value : reference.getAntibodies().getAntibody()) {
-            if(value.isSelected()) { sample.getAntibodies().getAntibody().add(value.getValue()); }
+            if(value.isSelected()) {
+                Sample.Antibodies.Antibody newValue = new Sample.Antibodies.Antibody();
+                newValue.setValue(value.getValue());
+                newValue.setSickleCell(value.isSickleCell());
+                sample.getAntibodies().getAntibody().add(newValue);
+            }
         }
         sample.setOtherAllo(new Sample.OtherAllo());
         for(Reference.OtherAllo.Allo value : reference.getOtherAllo().getAllo()) {

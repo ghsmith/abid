@@ -2,10 +2,10 @@ package edu.emory.abid;
 
 import edu.emory.abid.data.Reference;
 import edu.emory.abid.data.Sample;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import javax.servlet.ServletException;
@@ -41,16 +41,13 @@ public class SampleXLSTServlet extends HttpServlet {
             throw new RuntimeException(ex);
         }
         
-        File sampleXmlFile = null;
-        
         // marshal sample to XML
+        ByteArrayOutputStream os = new ByteArrayOutputStream(100000);
         try {
             JAXBContext jc0 = JAXBContext.newInstance("edu.emory.abid.data");
             Marshaller marshaller = jc0.createMarshaller();
             marshaller.setProperty(javax.xml.bind.Marshaller.JAXB_ENCODING, "UTF-8");
             marshaller.setProperty(javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            sampleXmlFile = File.createTempFile("sample", ".xml");
-            OutputStream os = new FileOutputStream(sampleXmlFile);
             marshaller.marshal(sample, os);            
         }
         catch (JAXBException ex) {
@@ -58,12 +55,13 @@ public class SampleXLSTServlet extends HttpServlet {
         }
 
         // XSL transform
+        ByteArrayInputStream is = new ByteArrayInputStream(os.toByteArray());
         try {
             TransformerFactory factory = TransformerFactory.newInstance();
             Source xsl = new StreamSource(new File(getServletContext().getInitParameter("xslFileName")));
-            Source text = new StreamSource(sampleXmlFile);
+            Source xml = new StreamSource(is);
             Transformer transformer = factory.newTransformer(xsl);
-            transformer.transform(text, new StreamResult(out));
+            transformer.transform(xml, new StreamResult(out));
         } catch (TransformerConfigurationException ex) {
             throw new RuntimeException(ex);
         } catch (TransformerException ex) {
