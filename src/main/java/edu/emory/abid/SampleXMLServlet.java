@@ -4,6 +4,7 @@ import edu.emory.abid.data.Reference;
 import edu.emory.abid.data.Sample;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +24,12 @@ public class SampleXMLServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         Reference reference = (Reference)request.getSession().getAttribute("reference");
-        Sample sample = new SampleFinder().populate(reference);
+        Sample sample;
+        try {
+            sample = new SampleFinder().populate(reference);
+        } catch (ParseException ex) {
+            throw new RuntimeException(ex);
+        }
         
         // marshal sample to XML
         try {
@@ -34,6 +40,7 @@ public class SampleXMLServlet extends HttpServlet {
             marshaller.marshal(sample, out);            
         }
         catch (JAXBException ex) {
+            throw new RuntimeException(ex);
         }
         
     }

@@ -10,12 +10,8 @@
     <!--link rel="apple-touch-icon" href="<%=request.getContextPath()%>/apple-touch-icon.png" /-->
     <meta name="viewport" content="width=device-width, initial-scale=1"/> 
     <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
-    <link rel="stylesheet" href="//cdn.rawgit.com/arschmitz/jquery-mobile-datepicker-wrapper/v0.1.1/jquery.mobile.datepicker.css">
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
     <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-    <script src="//cdn.rawgit.com/jquery/jquery-ui/1.10.4/ui/jquery.ui.datepicker.js"></script>
-    <script id="mobile-datepicker" src="//cdn.rawgit.com/arschmitz/jquery-mobile-datepicker-wrapper/v0.1.1/jquery.mobile.datepicker.js"></script>
 </head>
 
 <body>
@@ -160,31 +156,27 @@
                 var value = eval("reference." + responseItemElements[x].name);
                 $("#responseItems").append("<p id='ri" + x + "stem' class='stem'>" + responseItemElements[x].name + "</p>")
                 $("#responseItems").append("<p id='ri" + x + "options' class='options'></p>");
-                //$("#ri" + x + "options").append("<input type='text' data-role='date' data-clear-btn='true' id='ri" + x +  "' data-binding='reference." + responseItemElements[x].name + "' value='" + (value != null ? value : "") + "'>");
-                $("#ri" + x + "options").append("<input id='datepicker' type='text' data-role='date' data-clear-btn='true' data-inline='true' id='ri" + x +  "' data-binding='reference." + responseItemElements[x].name + "' value='" + (value != null ? value : "") + "'>");
+                $("#ri" + x + "options").append("<input type='date' data-clear-btn='true' id='ri" + x +  "' data-binding='reference." + responseItemElements[x].name + "' value='" + (value != null ? value : "") + "'>");
             }    
         }
+        
         $("#responseItems .options").trigger("create");
 
-        $("#responseItems input[type='radio'], #responseItems input[type='checkbox']").change(function(e) {
-            var value = eval($(this).attr("data-binding"));
-            if(this.checked) {
-                value.selected = true;
-            }
-            else {
-                value.selected = false;
-            }
+        $("#responseItems input[type='radio']").change(function(e) {
+            $(this).parents("fieldset").find("input").each(function() {
+                eval($(this).attr("data-binding") + ".selected = false");
+            });
+            eval($(this).attr("data-binding") + ".selected = " + this.checked);
             setReference();
         });
 
-        $("#responseItems input[type='text']").change(function(e) {
+        $("#responseItems input[type='checkbox']").change(function(e) {
+            eval($(this).attr("data-binding") + ".selected = " + this.checked);
+            setReference();
+        });
+
+        $("#responseItems input[type='text'], #responseItems input[type='date']").change(function(e) {
             eval($(this).attr("data-binding") + " = '" + $(this).val() + "'");
-            setReference();
-        });
-
-        // need to fix this...
-        $('#datepicker').on("input change", function (e) {
-            reference.collectionDate = e.target.value;
             setReference();
         });
 

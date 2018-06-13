@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,7 +34,12 @@ public class SampleXLSTServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         Reference reference = (Reference)request.getSession().getAttribute("reference");
-        Sample sample = new SampleFinder().populate(reference);
+        Sample sample;
+        try {
+            sample = new SampleFinder().populate(reference);
+        } catch (ParseException ex) {
+            throw new RuntimeException(ex);
+        }
         
         File sampleXmlFile = null;
         
@@ -48,6 +54,7 @@ public class SampleXLSTServlet extends HttpServlet {
             marshaller.marshal(sample, os);            
         }
         catch (JAXBException ex) {
+            throw new RuntimeException(ex);
         }
 
         // XSL transform

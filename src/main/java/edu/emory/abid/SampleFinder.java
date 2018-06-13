@@ -2,11 +2,18 @@ package edu.emory.abid;
 
 import edu.emory.abid.data.Reference;
 import edu.emory.abid.data.Sample;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class SampleFinder {
 
-    public Sample populate(Reference reference) {
+    public Sample populate(Reference reference) throws ParseException {
 
+        // This is sloppy. We should set type to Date and handle conversion on
+        // the client.
+        SimpleDateFormat sdfIn = new SimpleDateFormat("yyyy-MM-dddd");
+        SimpleDateFormat sdfOut = new SimpleDateFormat("MM/dd/yyyy");
+        
         Sample sample = new Sample();
         
         sample.setResidentName(reference.getResidentName());
@@ -14,7 +21,7 @@ public class SampleFinder {
         sample.setLastName(reference.getLastName());
         sample.setFirstName(reference.getFirstName());
         sample.setAge(reference.getAge());
-        sample.setCollectionDate(reference.getCollectionDate());
+        sample.setCollectionDate(reference.getCollectionDate() != null ? sdfOut.format(sdfIn.parse(reference.getCollectionDate())) : null);
         sample.setHospital(new Sample.Hospital());
         for(Reference.Hospital.HospitalLoc value : reference.getHospital().getHospitalLoc()) {
             if(value.isSelected()) { sample.getHospital().setHospitalLoc(value.getValue()); }
@@ -23,7 +30,6 @@ public class SampleFinder {
         for(Reference.Genders.Gender value : reference.getGenders().getGender()) {
             if(value.isSelected()) { sample.getGenders().setGender(value.getValue()); }
         }
-        sample.setAge("35");
         sample.setBbSummaries(new Sample.BbSummaries());
         for(Reference.BbSummaries.BbSummary value : reference.getBbSummaries().getBbSummary()) {
             if(value.isSelected()) { sample.getBbSummaries().setBbSummary(value.getValue()); }
