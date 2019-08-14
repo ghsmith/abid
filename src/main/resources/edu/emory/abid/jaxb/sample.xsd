@@ -1,19 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Created with Liquid Technologies Online Tools 1.0 (https://www.liquid-technologies.com) -->
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="sample">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="hospital">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="hospitalLoc" type="xs:string" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="mrn" type="xs:string" />
-        <xs:element name="lastName" type="xs:string" />
-        <xs:element name="firstName" type="xs:string" />
         <xs:element name="collectionDate" type="xs:string" />
         <xs:element name="genders">
           <xs:complexType>
@@ -75,6 +64,13 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="resultAutoControl">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="autoControl" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
         <xs:element name="rhogam" type="xs:string" />
         <xs:element name="resultEluate">
           <xs:complexType>
@@ -104,7 +100,6 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="residentName" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

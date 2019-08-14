@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <reference>
-    
-    <hospital>
-        <hospitalLoc selected="false">Emory</hospitalLoc>
-        <hospitalLoc selected="false">Grady</hospitalLoc>
-    </hospital>
-    <genders>
+
+    <collectionDate section="Demographics" uiControl="date" stem="When was the specimen collected?">
+        <freeValue/>
+    </collectionDate>
+    <age section="Demographics" uiControl="number" stem="What is the patient's age?">
+        <freeValue/>
+    </age>
+    <genders section="Demographics" uiControl="radio" stem="What is the patient's sex?">
         <gender selected="false">Female</gender>
         <gender selected="false">Male</gender>
     </genders>
-    <bbSummaries>
+    <bbSummaries section="Demographics" uiControl="radio" stem="What is the complexity of this workup?">
         <bbSummary selected="false">Routine</bbSummary>
         <bbSummary selected="false">Complex</bbSummary>
         <bbSummary selected="false">Highly complex</bbSummary>
     </bbSummaries>
-    <questionSCD>
-        <SCD selected="false">yes</SCD>
-        <SCD selected="false">no</SCD>
+    <questionSCD section="Demographics" uiControl="radio" stem="Is there a history of sickle cell disease?">
+        <scd selected="false">yes</scd>
+        <scd selected="false">no</scd>
     </questionSCD>
-    <aboRhType>
-        <aboType>
+    <aboType section="Serologic Testing" uiControl="radio" stem="What is the ABO type?">
             <abo selected="false">A</abo>
             <abo selected="false">B</abo>
             <abo selected="false">AB</abo>
             <abo selected="false">O</abo>
-        </aboType>
-        <rhType>
-            <rh selected="false">Rh-positive</rh>
-            <rh selected="false">Rh-negative</rh>
-        </rhType>
-    </aboRhType>
-    <antibodyScreen>
+    </aboType>
+    <rhType section="Serologic Testing" uiControl="radio" stem="What is the Rh type?">
+        <rh selected="false">Rh-positive</rh>
+        <rh selected="false">Rh-negative</rh>
+    </rhType>
+    <antibodyScreen section="Serologic Testing" uiControl="radio" stem="What is the result of the antibody screen?">
         <screen selected="false">positive</screen>
         <screen selected="false">negative</screen>
     </antibodyScreen>
-    <antibodies>
+    <antibodies section="Antibody ID" uiControl="checkbox" stem="What antibodies were identified?">
         <antibody sickleCell="false" selected="false">warm autoantibody</antibody>
         <antibody sickleCell="false" selected="false">HTLA</antibody>
         <antibody sickleCell="false" selected="false">anti-D</antibody>
@@ -59,22 +59,26 @@
         <antibody sickleCell="false" selected="false">anti-hr(B)</antibody>
         <antibody sickleCell="false" selected="false">anti-hr(S)</antibody>
     </antibodies>
-    <otherAllo>
+    <otherAllo section="Serologic Testing" uiControl="radio" stem="Were other antibodies ruled out?">
         <allo selected="false">ruled out</allo>
         <allo selected="false">unable to be ruled out</allo>
         <allo selected="false">ruled out using a LISS IAT screen</allo>
     </otherAllo>
-    <resultDAT>
-        <DAT selected="false">negative</DAT>
-        <DAT selected="false">positive for IgG</DAT>
-        <DAT selected="false">positive for complement</DAT>
-        <DAT selected="false">positive for IgG and complement</DAT>
+    <resultAutoControl section="Serologic Testing" uiControl="radio" stem="What is the result of the auto-control?">
+        <autoControl selected="false">negative</autoControl>
+        <autoControl selected="false">positive</autoControl>
+    </resultAutoControl>
+    <resultDAT section="Serologic Testing" uiControl="radio" stem="What is the result of the DAT?">
+        <dat selected="false">negative</dat>
+        <dat selected="false">positive for IgG</dat>
+        <dat selected="false">positive for complement</dat>
+        <dat selected="false">positive for IgG and complement</dat>
     </resultDAT>
-    <rhogam>
+    <rhogam section="Demographics" uiControl="radio" stem="Did the patient receive an Rh immune globulin product like RhoGAM or WinRho?">
         <rhogamQ selected="false">yes</rhogamQ>
         <rhogamQ selected="false">no</rhogamQ>
     </rhogam>
-    <resultEluate>
+    <resultEluate section="Serologic Testing" uiControl="radio" stem="What is the result of the eluate?">
         <eluate selected="false">not performed</eluate>
         <eluate selected="false">negative</eluate>
         <eluate selected="false">positive for</eluate>
@@ -83,7 +87,7 @@
     <!--antibodiesEluate>
         <eluateAntibody></eluateAntibody>
     </antibodiesEluate-->
-    <antigenNeg>
+    <antigenNeg section="Antibody ID" uiControl="checkbox" stem="Based on the patient's phenotype and antibodies, what are the antigen-negative transfusion requirements?">
         <antigen selected="false">C</antigen>
         <antigen selected="false">c</antigen>
         <antigen selected="false">E</antigen>
@@ -104,7 +108,7 @@
         <antigen selected="false">hr(B)</antigen>
         <antigen selected="false">hr(S)</antigen>
     </antigenNeg>
-    <phenotypeSCD>
+    <phenotypeSCD section="Antibody ID" uiControl="checkbox" stem="For patient's with sickle cell diseases, what is the patient's phenotype?">
         <antigenSCD selected="false">C-positive</antigenSCD>
         <antigenSCD selected="false">C-negative</antigenSCD>
         <antigenSCD selected="false">c-positive</antigenSCD>

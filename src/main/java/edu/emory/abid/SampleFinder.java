@@ -18,15 +18,12 @@ public class SampleFinder {
 
         // This is also sloppy. I suspect the right way to do this is to do an
         // XML-to-XML by XSLT.
-        sample.setResidentName(reference.getResidentName());
-        sample.setMrn(reference.getMrn());
-        sample.setLastName(reference.getLastName());
-        sample.setFirstName(reference.getFirstName());
-        sample.setAge(reference.getAge());
-        sample.setCollectionDate(reference.getCollectionDate() != null ? sdfOut.format(sdfIn.parse(reference.getCollectionDate())) : null);
-        sample.setHospital(new Sample.Hospital());
-        for(Reference.Hospital.HospitalLoc value : reference.getHospital().getHospitalLoc()) {
-            if(value.isSelected()) { sample.getHospital().setHospitalLoc(value.getValue()); }
+        sample.setAge(reference.getAge().getFreeValue());
+        try {
+        sample.setCollectionDate(reference.getCollectionDate().getFreeValue() != null ? sdfOut.format(sdfIn.parse(reference.getCollectionDate().getFreeValue())) : null);
+        }
+        catch(ParseException e) {
+            sample.setCollectionDate(null);
         }
         sample.setGenders(new Sample.Genders());
         for(Reference.Genders.Gender value : reference.getGenders().getGender()) {
@@ -37,14 +34,14 @@ public class SampleFinder {
             if(value.isSelected()) { sample.getBbSummaries().setBbSummary(value.getValue()); }
         }
         sample.setQuestionSCD(new Sample.QuestionSCD());
-        for(Reference.QuestionSCD.SCD value : reference.getQuestionSCD().getSCD()) {
+        for(Reference.QuestionSCD.Scd value : reference.getQuestionSCD().getScd()) {
             if(value.isSelected()) { sample.getQuestionSCD().setSCD(value.getValue()); }
         }
         sample.setAboRhType(new Sample.AboRhType());
-        for(Reference.AboRhType.AboType.Abo value : reference.getAboRhType().getAboType().getAbo()) {
+        for(Reference.AboType.Abo value : reference.getAboType().getAbo()) {
             if(value.isSelected()) { sample.getAboRhType().setAboType(value.getValue()); }
         }        
-        for(Reference.AboRhType.RhType.Rh value : reference.getAboRhType().getRhType().getRh()) {
+        for(Reference.RhType.Rh value : reference.getRhType().getRh()) {
             if(value.isSelected()) { sample.getAboRhType().setRhType(value.getValue()); }
         }
         for(Reference.AntibodyScreen.Screen value : reference.getAntibodyScreen().getScreen()) {
@@ -63,8 +60,12 @@ public class SampleFinder {
         for(Reference.OtherAllo.Allo value : reference.getOtherAllo().getAllo()) {
             if(value.isSelected()) { sample.getOtherAllo().getAllo().add(value.getValue()); }
         }
+        sample.setResultAutoControl(new Sample.ResultAutoControl());
+        for(Reference.ResultAutoControl.AutoControl value : reference.getResultAutoControl().getAutoControl()) {
+            if(value.isSelected()) { sample.getResultAutoControl().setAutoControl(value.getValue()); }
+        }
         sample.setResultDAT(new Sample.ResultDAT());
-        for(Reference.ResultDAT.DAT value : reference.getResultDAT().getDAT()) {
+        for(Reference.ResultDAT.Dat value : reference.getResultDAT().getDat()) {
             if(value.isSelected()) { sample.getResultDAT().setDAT(value.getValue()); }
         }
         for(Reference.Rhogam.RhogamQ value : reference.getRhogam().getRhogamQ()) {

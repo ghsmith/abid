@@ -7,10 +7,6 @@
         
          <html>
             <body>
-               <table>
-                   <tr><td>Name:</td><td><xsl:value-of select="firstName"/><xsl:text> </xsl:text><xsl:value-of select="lastName"/></td></tr>
-                   <tr><td>MRN:</td><td><xsl:value-of select="mrn"/></td></tr>
-               </table>
                <p> Blood Bank Summary:
                    <xsl:value-of select="bbSummaries/bbSummary"></xsl:value-of>
                    <xsl:choose>
@@ -56,9 +52,11 @@
                            All other common clinically significant alloantibodies were
                            <xsl:value-of select="otherAllo/allo"></xsl:value-of>.
                        </xsl:otherwise>
-                   </xsl:choose>The DAT was <xsl:value-of select="resultDAT/DAT"/>.  
+                   </xsl:choose>
+                   The autocontrol was was <xsl:value-of select="resultAutoControl/autoControl"/>.
+                   The DAT was <xsl:value-of select="resultDAT/DAT"/>.
                    <xsl:choose>
-                       <xsl:when test="resultDAT/DAT = negative"> </xsl:when>
+                       <xsl:when test="resultAutoControl/autoControl = 'negative' and resultDAT/DAT = 'negative'"> </xsl:when>
                        <xsl:otherwise>
                            <xsl:choose>
                             <xsl:when test="resultEluate/eluate = 'not performed'"></xsl:when>

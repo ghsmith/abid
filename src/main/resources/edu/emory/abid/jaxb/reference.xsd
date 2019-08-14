@@ -1,28 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Created with Liquid Technologies Online Tools 1.0 (https://www.liquid-technologies.com) -->
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:element name="reference">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="residentName" type="xs:string" />
-        <xs:element name="mrn" type="xs:string" />
-        <xs:element name="lastName" type="xs:string" />
-        <xs:element name="firstName" type="xs:string" />
-        <xs:element name="age" type="xs:string" />
-        <xs:element name="collectionDate" type="xs:string" />
-        <xs:element name="hospital">
+        <xs:element name="age">
           <xs:complexType>
-            <xs:sequence>
-              <xs:element maxOccurs="unbounded" name="hospitalLoc">
-                <xs:complexType>
-                  <xs:simpleContent>
-                    <xs:extension base="xs:string">
-                      <xs:attribute name="selected" type="xs:boolean" use="required" />
-                    </xs:extension>
-                  </xs:simpleContent>
-                </xs:complexType>
-              </xs:element>
-            </xs:sequence>
+            <xs:element name="freeValue" type="xs:string" />
+            <xs:attribute name="section" type="xs:string" use="required" />
+            <xs:attribute name="stem" type="xs:string" use="required" />
+            <xs:attribute name="uiControl" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="collectionDate">
+          <xs:complexType>
+            <xs:element name="freeValue" type="xs:string" />
+            <xs:attribute name="section" type="xs:string" use="required" />
+            <xs:attribute name="stem" type="xs:string" use="required" />
+            <xs:attribute name="uiControl" type="xs:string" use="required" />
           </xs:complexType>
         </xs:element>
         <xs:element name="genders">
@@ -38,6 +32,9 @@
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
+            <xs:attribute name="section" type="xs:string" use="required" />
+            <xs:attribute name="stem" type="xs:string" use="required" />
+            <xs:attribute name="uiControl" type="xs:string" use="required" />
           </xs:complexType>
         </xs:element>
         <xs:element name="bbSummaries">
@@ -53,12 +50,15 @@
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
+            <xs:attribute name="section" type="xs:string" use="required" />
+            <xs:attribute name="stem" type="xs:string" use="required" />
+            <xs:attribute name="uiControl" type="xs:string" use="required" />
           </xs:complexType>
         </xs:element>
         <xs:element name="questionSCD">
           <xs:complexType>
             <xs:sequence>
-              <xs:element maxOccurs="unbounded" name="SCD">
+              <xs:element maxOccurs="unbounded" name="scd">
                 <xs:complexType>
                   <xs:simpleContent>
                     <xs:extension base="xs:string">
@@ -68,42 +68,45 @@
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
+            <xs:attribute name="section" type="xs:string" use="required" />
+            <xs:attribute name="stem" type="xs:string" use="required" />
+            <xs:attribute name="uiControl" type="xs:string" use="required" />
           </xs:complexType>
         </xs:element>
-        <xs:element name="aboRhType">
+        <xs:element name="aboType">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="aboType">
+              <xs:element maxOccurs="unbounded" name="abo">
                 <xs:complexType>
-                  <xs:sequence>
-                    <xs:element maxOccurs="unbounded" name="abo">
-                      <xs:complexType>
-                        <xs:simpleContent>
-                          <xs:extension base="xs:string">
-                            <xs:attribute name="selected" type="xs:boolean" use="required" />
-                          </xs:extension>
-                        </xs:simpleContent>
-                      </xs:complexType>
-                    </xs:element>
-                  </xs:sequence>
-                </xs:complexType>
-              </xs:element>
-              <xs:element name="rhType">
-                <xs:complexType>
-                  <xs:sequence>
-                    <xs:element maxOccurs="unbounded" name="rh">
-                      <xs:complexType>
-                        <xs:simpleContent>
-                          <xs:extension base="xs:string">
-                            <xs:attribute name="selected" type="xs:boolean" use="required" />
-                          </xs:extension>
-                        </xs:simpleContent>
-                      </xs:complexType>
-                    </xs:element>
-                  </xs:sequence>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="selected" type="xs:boolean" use="required" />
+                    </xs:extension>
+                  </xs:simpleContent>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
+            <xs:attribute name="section" type="xs:string" use="required" />
+            <xs:attribute name="stem" type="xs:string" use="required" />
+            <xs:attribute name="uiControl" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="rhType">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="rh">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="selected" type="xs:boolean" use="required" />
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="section" type="xs:string" use="required" />
+            <xs:attribute name="stem" type="xs:string" use="required" />
+            <xs:attribute name="uiControl" type="xs:string" use="required" />
           </xs:complexType>
         </xs:element>
         <xs:element name="antibodyScreen">
@@ -135,6 +138,9 @@
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
+            <xs:attribute name="section" type="xs:string" use="required" />
+            <xs:attribute name="stem" type="xs:string" use="required" />
+            <xs:attribute name="uiControl" type="xs:string" use="required" />
           </xs:complexType>
         </xs:element>
         <xs:element name="otherAllo">
@@ -150,12 +156,15 @@
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
+            <xs:attribute name="section" type="xs:string" use="required" />
+            <xs:attribute name="stem" type="xs:string" use="required" />
+            <xs:attribute name="uiControl" type="xs:string" use="required" />
           </xs:complexType>
         </xs:element>
-        <xs:element name="resultDAT">
+        <xs:element name="resultAutoControl">
           <xs:complexType>
             <xs:sequence>
-              <xs:element maxOccurs="unbounded" name="DAT">
+              <xs:element maxOccurs="unbounded" name="autoControl">
                 <xs:complexType>
                   <xs:simpleContent>
                     <xs:extension base="xs:string">
@@ -165,6 +174,27 @@
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
+            <xs:attribute name="section" type="xs:string" use="required" />
+            <xs:attribute name="stem" type="xs:string" use="required" />
+            <xs:attribute name="uiControl" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="resultDAT">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="dat">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="selected" type="xs:boolean" use="required" />
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="section" type="xs:string" use="required" />
+            <xs:attribute name="stem" type="xs:string" use="required" />
+            <xs:attribute name="uiControl" type="xs:string" use="required" />
           </xs:complexType>
         </xs:element>
         <xs:element name="rhogam">
@@ -180,6 +210,9 @@
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
+            <xs:attribute name="section" type="xs:string" use="required" />
+            <xs:attribute name="stem" type="xs:string" use="required" />
+            <xs:attribute name="uiControl" type="xs:string" use="required" />
           </xs:complexType>
         </xs:element>
         <xs:element name="resultEluate">
@@ -195,6 +228,9 @@
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
+            <xs:attribute name="section" type="xs:string" use="required" />
+            <xs:attribute name="stem" type="xs:string" use="required" />
+            <xs:attribute name="uiControl" type="xs:string" use="required" />
           </xs:complexType>
         </xs:element>
         <xs:element name="antigenNeg">
@@ -210,6 +246,9 @@
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
+            <xs:attribute name="section" type="xs:string" use="required" />
+            <xs:attribute name="stem" type="xs:string" use="required" />
+            <xs:attribute name="uiControl" type="xs:string" use="required" />
           </xs:complexType>
         </xs:element>
         <xs:element name="phenotypeSCD">
@@ -225,6 +264,9 @@
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
+            <xs:attribute name="section" type="xs:string" use="required" />
+            <xs:attribute name="stem" type="xs:string" use="required" />
+            <xs:attribute name="uiControl" type="xs:string" use="required" />
           </xs:complexType>
         </xs:element>
       </xs:sequence>
