@@ -45,7 +45,7 @@
 
             <div id="workup" class="ui-content">
                 <div style="text-align: center; font-weight: bold;" id="currentSection"></div>
-                <p>Click on <i>Report</i> after you have completed all applicable workup.</p>
+                <div style="text-align: center;" id="currentSection">Click on <i>Report</i> after you have completed all applicable workup.</div>
                 <div id="responseItems">
                 </div>
                 <fieldset class="ui-grid-a">
@@ -190,8 +190,8 @@
 
         $("#currentNode .button-prev").closest('.ui-btn').addClass('ui-disabled');
         $("#currentNode .button-next").closest('.ui-btn').addClass('ui-disabled');
-        if(currentSection != "Demographics") { $("#currentNode .button-prev").closest('.ui-btn').removeClass('ui-disabled'); }
-        if(currentSection != "Antibody ID") { $("#currentNode .button-next").closest('.ui-btn').removeClass('ui-disabled'); }
+        if(!currentSection.match(/Section 1.*/)) { $("#currentNode .button-prev").closest('.ui-btn').removeClass('ui-disabled'); }
+        if(!currentSection.match(/Section 3.*/)) { $("#currentNode .button-next").closest('.ui-btn').removeClass('ui-disabled'); }
         if($(":focus") != null) { $(":focus").blur(); }
         $.mobile.silentScroll(0);
         

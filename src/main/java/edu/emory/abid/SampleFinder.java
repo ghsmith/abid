@@ -2,6 +2,8 @@ package edu.emory.abid;
 
 import edu.emory.abid.data.Reference;
 import edu.emory.abid.data.Sample;
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -20,7 +22,7 @@ public class SampleFinder {
         // XML-to-XML by XSLT.
         sample.setAge(reference.getAge().getFreeValue());
         try {
-        sample.setCollectionDate(reference.getCollectionDate().getFreeValue() != null ? sdfOut.format(sdfIn.parse(reference.getCollectionDate().getFreeValue())) : null);
+            sample.setCollectionDate(reference.getCollectionDate().getFreeValue() != null ? sdfOut.format(sdfIn.parse(reference.getCollectionDate().getFreeValue())) : null);
         }
         catch(ParseException e) {
             sample.setCollectionDate(null);
@@ -75,10 +77,15 @@ public class SampleFinder {
         for(Reference.ResultEluate.Eluate value : reference.getResultEluate().getEluate()) {
             if(value.isSelected()) { sample.getResultEluate().setEluate(value.getValue()); }
         }
+        float freq = ("Rh-negative".equals(sample.getAboRhType().getRhType()) ? reference.getRhType().getAntigenNegFreq().floatValue() : 1f);
         sample.setAntigenNeg(new Sample.AntigenNeg());
         for(Reference.AntigenNeg.Antigen value : reference.getAntigenNeg().getAntigen()) {
-            if(value.isSelected()) { sample.getAntigenNeg().getAntigen().add(value.getValue()); }
+            if(value.isSelected()) {
+                freq = freq * value.getAntigenNegFreq().floatValue();
+                sample.getAntigenNeg().getAntigen().add(value.getValue());
+            }
         }
+        sample.setOverallFrequency((new BigDecimal(freq)).round(new MathContext(2)));
         sample.setPhenotypeSCD(new Sample.PhenotypeSCD());
         for(Reference.PhenotypeSCD.AntigenSCD value : reference.getPhenotypeSCD().getAntigenSCD()) {
             if(value.isSelected()) { sample.getPhenotypeSCD().getAntigenSCD().add(value.getValue()); }

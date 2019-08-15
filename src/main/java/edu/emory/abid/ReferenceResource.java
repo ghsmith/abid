@@ -119,7 +119,7 @@ public class ReferenceResource {
             req.getSession().setAttribute("currentSection", 0);
         }
         int currentSection = (int)req.getSession().getAttribute("currentSection");
-        return sections[currentSection];
+        return String.format("Section %d of %d: %s", currentSection + 1, sections.length, sections[currentSection]);
     }
     
     // I must improve the following, but in a hurry...
@@ -141,7 +141,7 @@ public class ReferenceResource {
             currentSection = currentSection + 1;
         }
         req.getSession().setAttribute("currentSection", currentSection);
-        return sections[currentSection];
+        return String.format("Section %d of %d: %s", currentSection + 1, sections.length, sections[currentSection]);
     }
 
     // I must improve the following, but in a hurry...
@@ -163,7 +163,7 @@ public class ReferenceResource {
             currentSection = currentSection - 1;
         }
         req.getSession().setAttribute("currentSection", currentSection);
-        return sections[currentSection];
+        return String.format("Section %d of %d: %s", currentSection + 1, sections.length, sections[currentSection]);
     }
 
     

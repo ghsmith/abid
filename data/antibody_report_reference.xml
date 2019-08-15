@@ -27,7 +27,7 @@
             <abo selected="false">AB</abo>
             <abo selected="false">O</abo>
     </aboType>
-    <rhType section="Serologic Testing" uiControl="radio" stem="What is the Rh type?">
+    <rhType antigenNegFreq="0.15" section="Serologic Testing" uiControl="radio" stem="What is the Rh type?">
         <rh selected="false">Rh-positive</rh>
         <rh selected="false">Rh-negative</rh>
     </rhType>
@@ -88,25 +88,25 @@
         <eluateAntibody></eluateAntibody>
     </antibodiesEluate-->
     <antigenNeg section="Antibody ID" uiControl="checkbox" stem="Based on the patient's phenotype and antibodies, what are the antigen-negative transfusion requirements?">
-        <antigen selected="false">C</antigen>
-        <antigen selected="false">c</antigen>
-        <antigen selected="false">E</antigen>
-        <antigen selected="false">e</antigen>
-        <antigen selected="false">K</antigen>
-        <antigen selected="false">k</antigen>
-        <antigen selected="false">Kp(b)</antigen>
-        <antigen selected="false">Js(b)</antigen>
-        <antigen selected="false">Fy(a)</antigen>
-        <antigen selected="false">Fy(b)</antigen>
-        <antigen selected="false">Jk(a)</antigen>
-        <antigen selected="false">Jk(b)</antigen>
-        <antigen selected="false">M</antigen>
-        <antigen selected="false">S</antigen>
-        <antigen selected="false">s</antigen>
-        <antigen selected="false">U</antigen>
-        <antigen selected="false">Lu(b)</antigen>
-        <antigen selected="false">hr(B)</antigen>
-        <antigen selected="false">hr(S)</antigen>
+        <antigen antigenNegFreq="0.32" selected="false">C</antigen>
+        <antigen antigenNegFreq="0.20" selected="false">c</antigen>
+        <antigen antigenNegFreq="0.71" selected="false">E</antigen>
+        <antigen antigenNegFreq="0.020" selected="false">e</antigen>
+        <antigen antigenNegFreq="0.91" selected="false">K</antigen>
+        <antigen antigenNegFreq="0.0020" selected="false">k</antigen>
+        <antigen antigenNegFreq="0.0020" selected="false">Kp(b)</antigen>
+        <antigen antigenNegFreq="0.0020" selected="false">Js(b)</antigen>
+        <antigen antigenNegFreq="0.34" selected="false">Fy(a)</antigen>
+        <antigen antigenNegFreq="0.17" selected="false">Fy(b)</antigen>
+        <antigen antigenNegFreq="0.23" selected="false">Jk(a)</antigen>
+        <antigen antigenNegFreq="0.26" selected="false">Jk(b)</antigen>
+        <antigen antigenNegFreq="0.22" selected="false">M</antigen>
+        <antigen antigenNegFreq="0.45" selected="false">S</antigen>
+        <antigen antigenNegFreq="0.11" selected="false">s</antigen>
+        <antigen antigenNegFreq="0.0010" selected="false">U</antigen>
+        <antigen antigenNegFreq="0.0020" selected="false">Lu(b)</antigen>
+        <antigen antigenNegFreq="0.020" selected="false">hr(B)</antigen>
+        <antigen antigenNegFreq="0.020" selected="false">hr(S)</antigen>
     </antigenNeg>
     <phenotypeSCD section="Antibody ID" uiControl="checkbox" stem="For patient's with sickle cell diseases, what is the patient's phenotype?">
         <antigenSCD selected="false">C-positive</antigenSCD>

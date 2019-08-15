@@ -99,6 +99,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
+                            <strict>false</strict>
                             <schemaIncludes>
                                 <include>edu/emory/abid/jaxb/*.xsd</include>
                             </schemaIncludes>

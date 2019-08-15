@@ -181,14 +181,8 @@
                    </xsl:choose>
                    <xsl:choose>
                        <xsl:when test="questionSCD/SCD = 'yes'">
-                           <xsl:if test="hospital/hospitalLoc = 'Emory'">
                                <xsl:if test="antibodyScreen = 'negative'">C-negative, E-negative, K-negative (if these are negative, per Sickle Cell Disease Protocol), </xsl:if>
                                <xsl:if test="antibodyScreen = 'positive'">C-negative, E-negative, K-negative, Fy(a)-negative, Jk(b)-negative (if these are negative, per Sickle Cell Disease Protocol), </xsl:if>
-                           </xsl:if>
-                           <xsl:if test="hospital/hospitalLoc = 'Grady'">
-                               <xsl:if test="antibodyScreen = 'negative'">C-negative, E-negative, K-negative (if these are negative, per Sickle Cell Disease Protocol), </xsl:if>
-                               <xsl:if test="antibodyScreen = 'positive'">C-negative, E-negative, K-negative, Fy(a)-negative, Jk(b)-negative, S-negative (if these are negative, per Sickle Cell Disease Protocol), </xsl:if>
-                           </xsl:if>
                        </xsl:when>
                        <xsl:otherwise>
                            <xsl:for-each select="antigenNeg/antigen">
@@ -203,10 +197,19 @@
                        <xsl:otherwise></xsl:otherwise>
                    </xsl:choose>units should the patient require future transfusion.
                </p>
-               <p>
-                   Assisted by:
-                   <xsl:value-of select="residentName"></xsl:value-of>
-               </p>
+               <xsl:choose>
+                   <xsl:when test="overallFrequency &lt; 0.02">
+                     <p>
+                         -- The frequency of this combination of antigen-negative units is rare (less than 2% of the population).
+                         A nationwide search through the American Rare Donor Program may be necessary to find appropriate units for this patient.
+                     </p>
+                   </xsl:when>
+                   <xsl:when test="overallFrequency &lt; 0.05">
+                     <p>
+                         -- The frequency of this combination of antigen-negative units is uncommon (less than 5% of the donor population).
+                     </p>
+                   </xsl:when>
+               </xsl:choose>
                <p>
                    ICD10: R76.8
                </p>

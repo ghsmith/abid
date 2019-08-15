@@ -91,6 +91,7 @@
             <xs:sequence>
               <xs:element maxOccurs="unbounded" name="antigen" type="xs:string" />
             </xs:sequence>
+            <xs:attribute name="antigenNegFreq" type="xs:decimal" use="required" />
           </xs:complexType>
         </xs:element>
         <xs:element name="phenotypeSCD">
@@ -100,6 +101,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="overallFrequency" type="xs:decimal"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
