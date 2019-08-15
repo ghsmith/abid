@@ -77,8 +77,8 @@
     var responseItems;
     var currentSection;
 
-    function getReference() { getReference(false); }
-    function getReferenceReset() { getReference(true); }
+    function getReference() { return getReference(false); }
+    function getReferenceReset() { return getReference(true); }
 
     function getReference(reset) {
         
