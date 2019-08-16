@@ -187,13 +187,19 @@
     }
 
     function renderResponseItems() {
+        renderResponseItemsNoScroll(false);
+    }
+
+    function renderResponseItemsNoScroll(noScroll) {
 
         $("#currentNode .button-prev").closest('.ui-btn').addClass('ui-disabled');
         $("#currentNode .button-next").closest('.ui-btn').addClass('ui-disabled');
         if(!currentSection.match(/Section 1.*/)) { $("#currentNode .button-prev").closest('.ui-btn').removeClass('ui-disabled'); }
         if(!currentSection.match(/Section 3.*/)) { $("#currentNode .button-next").closest('.ui-btn').removeClass('ui-disabled'); }
         if($(":focus") != null) { $(":focus").blur(); }
-        $.mobile.silentScroll(0);
+        if(!noScroll) {
+            $.mobile.silentScroll(0);
+        }
         
         getResponseItems().then(function() {
             
@@ -201,6 +207,9 @@
             
             $("#responseItems").html("");
             for(var x = 0; x < responseItemElements.length; x++) {
+                if(!reference.questionSCD.scd[0].selected && (responseItemElements[x].name == "phenotypeSCD.antigenSCD")) { continue; }
+                if(reference.questionSCD.scd[0].selected && (responseItemElements[x].name == "antigenNeg.antigen")) { continue; }
+                if(!reference.resultEluate.eluate[3].selected && (responseItemElements[x].name == "resultEluateAntibodies.freeValue")) { continue; }
                 $("<p class='stem'>" + responseItemElements[x].stem + "</p>").appendTo("#responseItems");
                 var $options = $("<p class='options'></p>").appendTo("#responseItems");
                 if(responseItemElements[x].type == "radio" || responseItemElements[x].type == "checkbox") {
@@ -243,6 +252,10 @@
             $("#responseItems input[type='text'], #responseItems input[type='number'], #responseItems input[type='date']").change(function(e) {
                 eval($(this).attr("data-binding") + " = '" + $(this).val() + "'");
                 setReference();
+            });
+
+            $("#responseItems input[data-binding^='reference.resultEluate']").change(function(e) {
+                renderResponseItemsNoScroll(true);
             });
 
         });

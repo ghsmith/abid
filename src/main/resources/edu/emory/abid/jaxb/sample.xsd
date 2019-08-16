@@ -86,12 +86,12 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="resultEluateAntibodies" type="xs:string" />
         <xs:element name="antigenNeg">
           <xs:complexType>
             <xs:sequence>
               <xs:element maxOccurs="unbounded" name="antigen" type="xs:string" />
             </xs:sequence>
-            <xs:attribute name="antigenNegFreq" type="xs:decimal" use="required" />
           </xs:complexType>
         </xs:element>
         <xs:element name="phenotypeSCD">

@@ -46,6 +46,7 @@ public class SampleFinder {
         for(Reference.RhType.Rh value : reference.getRhType().getRh()) {
             if(value.isSelected()) { sample.getAboRhType().setRhType(value.getValue()); }
         }
+        float freq = ("Rh-negative".equals(sample.getAboRhType().getRhType()) ? reference.getRhType().getAntigenNegFreq().floatValue() : 1f);
         for(Reference.AntibodyScreen.Screen value : reference.getAntibodyScreen().getScreen()) {
             if(value.isSelected()) { sample.setAntibodyScreen(value.getValue()); }
         }
@@ -77,19 +78,26 @@ public class SampleFinder {
         for(Reference.ResultEluate.Eluate value : reference.getResultEluate().getEluate()) {
             if(value.isSelected()) { sample.getResultEluate().setEluate(value.getValue()); }
         }
-        float freq = ("Rh-negative".equals(sample.getAboRhType().getRhType()) ? reference.getRhType().getAntigenNegFreq().floatValue() : 1f);
+        sample.setResultEluateAntibodies(reference.getResultEluateAntibodies().getFreeValue());
         sample.setAntigenNeg(new Sample.AntigenNeg());
         for(Reference.AntigenNeg.Antigen value : reference.getAntigenNeg().getAntigen()) {
             if(value.isSelected()) {
-                freq = freq * value.getAntigenNegFreq().floatValue();
+                if(!"yes".equals(sample.getQuestionSCD().getSCD())) {
+                    freq = freq * value.getAntigenNegFreq().floatValue();
+                }
                 sample.getAntigenNeg().getAntigen().add(value.getValue());
             }
         }
-        sample.setOverallFrequency((new BigDecimal(freq)).round(new MathContext(2)));
         sample.setPhenotypeSCD(new Sample.PhenotypeSCD());
         for(Reference.PhenotypeSCD.AntigenSCD value : reference.getPhenotypeSCD().getAntigenSCD()) {
-            if(value.isSelected()) { sample.getPhenotypeSCD().getAntigenSCD().add(value.getValue()); }
+            if(value.isSelected()) {
+                if("yes".equals(sample.getQuestionSCD().getSCD())) {
+                    freq = freq * value.getAntigenNegFreq().floatValue();
+                }
+                sample.getPhenotypeSCD().getAntigenSCD().add(value.getValue());
+            }
         }
+        sample.setOverallFrequency((new BigDecimal(freq)).round(new MathContext(2)));
         
         return sample;
 

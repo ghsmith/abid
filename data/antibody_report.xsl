@@ -53,7 +53,7 @@
                            <xsl:value-of select="otherAllo/allo"></xsl:value-of>.
                        </xsl:otherwise>
                    </xsl:choose>
-                   The autocontrol was was <xsl:value-of select="resultAutoControl/autoControl"/>.
+                   The autocontrol was <xsl:value-of select="resultAutoControl/autoControl"/>.
                    The DAT was <xsl:value-of select="resultDAT/DAT"/>.
                    <xsl:choose>
                        <xsl:when test="resultAutoControl/autoControl = 'negative' and resultDAT/DAT = 'negative'"> </xsl:when>
@@ -62,13 +62,14 @@
                             <xsl:when test="resultEluate/eluate = 'not performed'"></xsl:when>
                             <xsl:when test="resultEluate/eluate = 'negative'">The eluate is negative. </xsl:when>
                             <xsl:when test="resultEluate/eluate = 'panagglutination'">The eluate demonstrates panagglutination. </xsl:when>
-                            <xsl:when test="resultEluate/eluate = 'positive'">The eluate is positive for
-                                <xsl:for-each select="antibodies/antibody">
+                            <xsl:when test="resultEluate/eluate = 'positive for... (specify below)'">The eluate is positive for
+                                <xsl:value-of select="resultEluateAntibodies" />.
+                                <!--xsl:for-each select="antibodies/antibody">
                                     <xsl:if test="count(../antibody) > 1 and position() = last()"><xsl:text> and</xsl:text></xsl:if>
                                     <xsl:if test="position() > 1"><xsl:text> </xsl:text></xsl:if>
                                     <xsl:value-of select="current()"/>
                                     <xsl:if test="position() != last() and count(../antibody) > 2"><xsl:text>,</xsl:text></xsl:if>   
-                                </xsl:for-each><xsl:text>. </xsl:text>
+                                </xsl:for-each><xsl:text>. </xsl:text-->
                             </xsl:when>
                            </xsl:choose>     
                        </xsl:otherwise>    
