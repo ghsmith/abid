@@ -108,7 +108,7 @@
         <antigen antigenNegFreq="0.020" selected="false">hr(B)</antigen>
         <antigen antigenNegFreq="0.020" selected="false">hr(S)</antigen>
     </antigenNeg>
-    <phenotypeSCD section="Antibody ID" uiControl="checkbox" stem="For patient's with sickle cell diseases, what is the patient's phenotype?">
+    <phenotypeSCD section="Antibody ID" uiControl="checkbox" stem="For patients with sickle cell disease, what is the patient's phenotype?">
         <antigenSCD antigenNegFreq="1" selected="false">C-positive</antigenSCD>
         <antigenSCD antigenNegFreq="0.32" selected="false">C-negative</antigenSCD>
         <antigenSCD antigenNegFreq="1" selected="false">c-positive</antigenSCD>
