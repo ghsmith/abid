@@ -4,7 +4,7 @@
 <html> 
 
 <head> 
-    <title>Antibody ID [alpha 20180612]</title> 
+    <title>Antibody ID [beta 20190819]</title> 
     <!--link rel="shortcut icon" href="<%=request.getContextPath()%>/favicon.ico" type="image/x-icon" /-->
     <!--meta name="apple-mobile-web-app-capable" content="yes" /-->
     <!--link rel="apple-touch-icon" href="<%=request.getContextPath()%>/apple-touch-icon.png" /-->
@@ -18,7 +18,7 @@
     
     <div id="welcome" data-role="page">
         <div data-role="header">
-            <h1>Antibody ID [alpha 20190813]</h1>
+            <h1>Antibody ID [beta 20190819]</h1>
         </div>
         <div role="main" class="ui-content">
             <p>Caveat about clinically using this. Background information.
@@ -32,7 +32,7 @@
 	
     <div id="currentNode" data-role="page">
         <div data-role="header">
-            <h1>Antibody ID [alpha 20190813]</h1>
+            <h1>Antibody ID [beta 20190819]</h1>
         </div>
         <div data-role="tabs" style="padding: 0px">
 
@@ -59,7 +59,7 @@
             <div id="report" class="ui-content">
                 <div id="reportBody" style="border: 1px solid black; padding: 5px; background-color: white;">
                 </div>
-                <a href="<%=request.getContextPath()%>/sampleXMLServlet" target="_blank">[XML version of this report]</a>
+                <div style="text-align: center;"><a href="<%=request.getContextPath()%>/sampleXMLServlet" target="_blank">[XML version of this report]</a></div>
             </div>
             
         </div>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet type="text/xsl" href="updated_antibody_report.xsl"?>
+
+<sample>
+    <collectionDate>06/07/2018</collectionDate>
+    <genders>
+        <gender>Female</gender>
+    </genders>
+    <age>52</age>
+    <bbSummaries>
+        <bbSummary>Complex</bbSummary>
+    </bbSummaries>    
+    <questionSCD>
+        <SCD>no</SCD>
+    </questionSCD>
+    <aboRhType>
+        <aboType>O</aboType>
+        <rhType>Rh-negative</rhType>
+    </aboRhType>
+    <antibodyScreen>positive</antibodyScreen>
+    <antibodies>
+        <antibody>HTLA</antibody>
+        <!--antibody>anti-C</antibody>
+        <antibody>anti-E</antibody>
+        <antibody>anti-K</antibody-->
+    </antibodies>
+    <otherAllo>
+        <allo>ruled out</allo>
+    </otherAllo>
+    <resultAutoControl>
+        <autoControl>negative</autoControl>
+    </resultAutoControl>
+    <resultDAT>
+        <DAT>negative</DAT>
+    </resultDAT>
+    <rhogamQ>yes</rhogamQ>
+    <resultEluate>
+        <eluate></eluate>
+    </resultEluate>
+    <antibodiesEluate>
+        <eluateAntibody></eluateAntibody>
+    </antibodiesEluate>
+    <antigenNeg>
+        <!--antigen></antigen>
+        <antigen></antigen>
+        <antigen></antigen-->
+    </antigenNeg>
+    <phenotypeSCD>
+        <!--antigenSCD></antigenSCD>
+        <antigenSCD></antigenSCD>
+        <antigenSCD></antigenSCD>
+        <antigenSCD></antigenSCD>
+        <antigenSCD></antigenSCD>
+        <antigenSCD></antigenSCD>
+        <antigenSCD></antigenSCD>
+        <antigenSCD></antigenSCD>
+        <antigenSCD></antigenSCD>
+        <antigenSCD></antigenSCD>
+        <antigenSCD></antigenSCD-->
+    </phenotypeSCD>
+    <residentName>Dr. Wooten</residentName>
+</sample>

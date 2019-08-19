@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <reference>
-
+    
     <collectionDate section="Demographics" uiControl="date" stem="When was the specimen collected?">
         <freeValue/>
     </collectionDate>
@@ -22,10 +22,10 @@
         <scd selected="false">no</scd>
     </questionSCD>
     <aboType section="Serologic Testing" uiControl="radio" stem="What is the ABO type?">
-            <abo selected="false">A</abo>
-            <abo selected="false">B</abo>
-            <abo selected="false">AB</abo>
-            <abo selected="false">O</abo>
+        <abo selected="false">A</abo>
+        <abo selected="false">B</abo>
+        <abo selected="false">AB</abo>
+        <abo selected="false">O</abo>
     </aboType>
     <rhType antigenNegFreq="0.15" section="Serologic Testing" uiControl="radio" stem="What is the Rh type?">
         <rh selected="false">Rh-positive</rh>
@@ -65,10 +65,12 @@
         <allo selected="false">ruled out using a LISS IAT screen</allo>
     </otherAllo>
     <resultAutoControl section="Serologic Testing" uiControl="radio" stem="What is the result of the auto-control?">
+        <autoControl selected="false">not performed</autoControl>
         <autoControl selected="false">negative</autoControl>
         <autoControl selected="false">positive</autoControl>
     </resultAutoControl>
     <resultDAT section="Serologic Testing" uiControl="radio" stem="What is the result of the DAT?">
+        <dat selected="false">not performed</dat>
         <dat selected="false">negative</dat>
         <dat selected="false">positive for IgG</dat>
         <dat selected="false">positive for complement</dat>
