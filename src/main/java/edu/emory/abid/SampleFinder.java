@@ -88,7 +88,7 @@ public class SampleFinder {
         sample.setAntigenNeg(new Sample.AntigenNeg());
         for(Reference.AntigenNeg.Antigen value : reference.getAntigenNeg().getAntigen()) {
             if(value.isSelected()) {
-                if(!"yes".equals(sample.getQuestionSCD().getSCD())) {
+                if(!"yes".equals(sample.getQuestionSCD().getSCD()) && value.isRespectIfAntigenNeg()) {
                     freq = freq * value.getAntigenNegFreq().floatValue();
                 }
                 Sample.AntigenNeg.Antigen newValue = new Sample.AntigenNeg.Antigen();
