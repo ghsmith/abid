@@ -30,7 +30,15 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="aboType" type="xs:string" />
-              <xs:element name="rhType" type="xs:string" />
+              <xs:element name="rhType">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="antigenNegFreq" type="xs:decimal" use="required" />
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -90,14 +98,31 @@
         <xs:element name="antigenNeg">
           <xs:complexType>
             <xs:sequence>
-              <xs:element maxOccurs="unbounded" name="antigen" type="xs:string" />
+              <xs:element maxOccurs="unbounded" name="antigen">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="antigenNegFreq" type="xs:decimal" use="required" />
+                      <xs:attribute name="respectIfAntigenNeg" type="xs:boolean" use="required" />
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
         <xs:element name="phenotypeSCD">
           <xs:complexType>
             <xs:sequence>
-              <xs:element maxOccurs="unbounded" name="antigenSCD" type="xs:string" />
+              <xs:element maxOccurs="unbounded" name="antigenSCD">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="antigenNegFreq" type="xs:decimal" use="required" />
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>

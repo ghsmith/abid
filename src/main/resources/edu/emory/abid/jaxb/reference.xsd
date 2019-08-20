@@ -98,13 +98,13 @@
                 <xs:complexType>
                   <xs:simpleContent>
                     <xs:extension base="xs:string">
+                      <xs:attribute name="antigenNegFreq" type="xs:decimal" use="required" />
                       <xs:attribute name="selected" type="xs:boolean" use="required" />
                     </xs:extension>
                   </xs:simpleContent>
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
-            <xs:attribute name="antigenNegFreq" type="xs:decimal" use="required" />
             <xs:attribute name="section" type="xs:string" use="required" />
             <xs:attribute name="stem" type="xs:string" use="required" />
             <xs:attribute name="uiControl" type="xs:string" use="required" />
@@ -250,6 +250,7 @@
                   <xs:simpleContent>
                     <xs:extension base="xs:string">
                       <xs:attribute name="antigenNegFreq" type="xs:decimal" use="required" />
+                      <xs:attribute name="respectIfAntigenNeg" type="xs:boolean" use="required" />
                       <xs:attribute name="selected" type="xs:boolean" use="required" />
                     </xs:extension>
                   </xs:simpleContent>

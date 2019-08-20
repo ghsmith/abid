@@ -199,9 +199,8 @@
                             <xsl:if test="antibodyScreen = 'negative'">C-negative, E-negative, K-negative (if these are negative, per Sickle Cell Disease Protocol), </xsl:if>
                             <xsl:if test="antibodyScreen = 'positive'">C-negative, E-negative, K-negative, Fy(a)-negative, Jk(b)-negative (if these are negative, per Sickle Cell Disease Protocol), </xsl:if>
                         </xsl:when>
-                        <xsl:when test="antibodyScreen = 'positive' and count(antibodies/antibody) = 1 and (antibodies/antibody) = 'anti-M'"></xsl:when>    
                         <xsl:otherwise>
-                            <xsl:for-each select="antigenNeg/antigen">
+                            <xsl:for-each select="antigenNeg/antigen[@respectIfAntigenNeg = 'true']">
                                 <xsl:if test="count(../antigen) > 1 and position() = last()"></xsl:if>
                                 <xsl:if test="position() > 1"><xsl:text> </xsl:text></xsl:if>
                                 <xsl:value-of select="current()"></xsl:value-of><xsl:text>-negative, </xsl:text>   
