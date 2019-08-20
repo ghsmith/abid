@@ -36,28 +36,28 @@
         <screen selected="false">negative</screen>
     </antibodyScreen>
     <antibodies section="Antibody ID" uiControl="checkbox" stem="What antibodies were identified?">
-        <antibody sickleCell="false" selected="false">warm autoantibody</antibody>
-        <antibody sickleCell="false" selected="false">HTLA</antibody>
-        <antibody sickleCell="false" selected="false">anti-D</antibody>
-        <antibody sickleCell="true" selected="false">anti-C</antibody>
-        <antibody sickleCell="true" selected="false">anti-c</antibody>
-        <antibody sickleCell="true" selected="false">anti-E</antibody>
-        <antibody sickleCell="true" selected="false">anti-e</antibody>
-        <antibody sickleCell="true" selected="false">anti-K</antibody>
-        <antibody sickleCell="false" selected="false">anti-k</antibody>
-        <antibody sickleCell="false" selected="false">anti-Kp(b)</antibody>
-        <antibody sickleCell="false" selected="false">anti-Js(b)</antibody>
-        <antibody sickleCell="true" selected="false">anti-Fy(a)</antibody>
-        <antibody sickleCell="true" selected="false">anti-Fy(b)</antibody>
-        <antibody sickleCell="true" selected="false">anti-Jk(a)</antibody>
-        <antibody sickleCell="true" selected="false">anti-Jk(b)</antibody>
-        <antibody sickleCell="false" selected="false">anti-M</antibody>
-        <antibody sickleCell="true" selected="false">anti-S</antibody>
-        <antibody sickleCell="false" selected="false">anti-s</antibody>
-        <antibody sickleCell="false" selected="false">anti-U</antibody>
-        <antibody sickleCell="false" selected="false">anti-Lu(b)</antibody>
-        <antibody sickleCell="false" selected="false">anti-hr(B)</antibody>
-        <antibody sickleCell="false" selected="false">anti-hr(S)</antibody>
+        <antibody sickleCell="false" hdfn="false" selected="false">warm autoantibody</antibody>
+        <antibody sickleCell="false" hdfn="false" selected="false">HTLA</antibody>
+        <antibody sickleCell="false" hdfn="true" selected="false">anti-D</antibody>
+        <antibody sickleCell="true" hdfn="true" selected="false">anti-C</antibody>
+        <antibody sickleCell="true" hdfn="true" selected="false">anti-c</antibody>
+        <antibody sickleCell="true" hdfn="true" selected="false">anti-E</antibody>
+        <antibody sickleCell="true" hdfn="true" selected="false">anti-e</antibody>
+        <antibody sickleCell="true" hdfn="true" selected="false">anti-K</antibody>
+        <antibody sickleCell="false" hdfn="true" selected="false">anti-k</antibody>
+        <antibody sickleCell="false" hdfn="true" selected="false">anti-Kp(b)</antibody>
+        <antibody sickleCell="false" hdfn="true" selected="false">anti-Js(b)</antibody>
+        <antibody sickleCell="true" hdfn="true" selected="false">anti-Fy(a)</antibody>
+        <antibody sickleCell="true" hdfn="true" selected="false">anti-Fy(b)</antibody>
+        <antibody sickleCell="true" hdfn="true" selected="false">anti-Jk(a)</antibody>
+        <antibody sickleCell="true" hdfn="true" selected="false">anti-Jk(b)</antibody>
+        <antibody sickleCell="false" hdfn="true" selected="false">anti-M</antibody>
+        <antibody sickleCell="true" hdfn="true" selected="false">anti-S</antibody>
+        <antibody sickleCell="false" hdfn="true" selected="false">anti-s</antibody>
+        <antibody sickleCell="false" hdfn="true" selected="false">anti-U</antibody>
+        <antibody sickleCell="false" hdfn="true" selected="false">anti-Lu(b)</antibody>
+        <antibody sickleCell="false" hdfn="false" selected="false">anti-hr(B)</antibody>
+        <antibody sickleCell="false" hdfn="false" selected="false">anti-hr(S)</antibody>
     </antibodies>
     <otherAllo section="Serologic Testing" uiControl="radio" stem="Were other antibodies ruled out?">
         <allo selected="false">ruled out</allo>

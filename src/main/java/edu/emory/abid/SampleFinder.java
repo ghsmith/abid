@@ -61,6 +61,7 @@ public class SampleFinder {
             if(value.isSelected()) {
                 Sample.Antibodies.Antibody newValue = new Sample.Antibodies.Antibody();
                 newValue.setValue(value.getValue());
+                newValue.setHdfn(value.isHdfn());
                 newValue.setSickleCell(value.isSickleCell());
                 sample.getAntibodies().getAntibody().add(newValue);
             }

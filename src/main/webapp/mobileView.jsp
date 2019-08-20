@@ -21,8 +21,19 @@
             <h1>Antibody ID [beta 20190819]</h1>
         </div>
         <div role="main" class="ui-content">
-            <p>Caveat about clinically using this. Background information.
-            Friends, Romans, Countrymen! Lend me your ears. We have come to bury Caesar, not to praise him.</p>
+            <p>Antibody identification reports are important documents in the
+                medical record which provide accurate and clear communication of
+                a patient's transfusion requirements to the clinical team. This
+                user-friendly application is based on a proprietary algorithm
+                which uses a series of simple questions to accurately summarize
+                serologic testing and transfusion recommendations for many of
+                the most common situations (including administration of a RhIg
+                product, possibility of HDFN, and antigen-negative
+                recommendations for patients with Sickle Cell disease).
+                This application is only a tool and contains a comprehensive,
+                but not exhaustive, list of common antigens/antibodies.
+                Medical decisions based on the output of this tool should only
+                be made by qualified and licensed medical providers.</p>
             <p><a class="button-agree" href="#currentNode" data-role="button">Acknowledge &amp; continue</a></p>
         </div>
         <div>
@@ -210,14 +221,26 @@
                 if(!reference.questionSCD.scd[0].selected && (responseItemElements[x].name == "phenotypeSCD.antigenSCD")) { continue; }
                 if(reference.questionSCD.scd[0].selected && (responseItemElements[x].name == "antigenNeg.antigen")) { continue; }
                 if(!reference.resultEluate.eluate[3].selected && (responseItemElements[x].name == "resultEluateAntibodies.freeValue")) { continue; }
-                $("<p class='stem'>" + responseItemElements[x].stem + "</p>").appendTo("#responseItems");
-                var $options = $("<p class='options'></p>").appendTo("#responseItems");
+                // major hack for side-by-side display of antibodies and antigen negative requirements
+                // assumes that antibodies.antibody and antigenNeg.antigen appear in that sequence
+                var $base = !reference.questionSCD.scd[0].selected && (responseItemElements[x].name == "antibodies.antibody" || responseItemElements[x].name == "antigenNeg.antigen") ? $("<div style='display: inline-block; width: 50%;'></div>").appendTo("#responseItems") : $("#responseItems");
+                $("<p class='stem'>" + responseItemElements[x].stem + "</p>").appendTo($base);
+                var $options = $("<p class='options'></p>").appendTo($base);
                 if(responseItemElements[x].type == "radio" || responseItemElements[x].type == "checkbox") {
                     var values = eval("reference." + responseItemElements[x].name);
                     var $fieldset = $("<fieldset data-role='controlgroup'></fieldset>").appendTo($options);
+                    // major hack for side-by-side display of antibodies and antigen negative requirements
+                    // assumes that there are always more antibodies.antibody than antigenNeg.antigen
+                    if(responseItemElements[x].name == "antigenNeg.antigen") {
+                        for(var z = reference.antigenNeg.antigen.length; z < reference.antibodies.antibody.length; z++) {
+                            $("<div class='ui-checkbox'><label class='ui-btn'>&nbsp;</label></div>").appendTo($fieldset);
+                        }
+                    }
                     for(var y = 0; y < values.length; y++) {
                         $("<input type='" + responseItemElements[x].type + "' name='ri" + x + "' id='ri" + x + "-" + y + "' data-binding='reference." + responseItemElements[x].name + "[" + y + "]" + "' " + (values[y].selected ? "checked = 'true'" : "") + "/>").appendTo($fieldset);
-                        $("<label for='ri" + x + "-" + y + "'>" + values[y].value + "</label>").appendTo($fieldset);
+                        // major hack for side-by-side display of antibodies and antigen negative requirements
+                        // shrinking "warm autoantibody" to "warm auto" so things don't wrap
+                        $("<label for='ri" + x + "-" + y + "'>" + values[y].value.replace("autoantibody", "auto") + "</label>").appendTo($fieldset);
                     }
                 }
                 else if(responseItemElements[x].type == "text") {
