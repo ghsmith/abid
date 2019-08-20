@@ -104,7 +104,7 @@
                 <p>
                     -- The patient is <xsl:value-of select="aboRhType/aboType"/><xsl:text>, </xsl:text><xsl:value-of select="aboRhType/rhType"/>.
                     <xsl:choose>
-                        <xsl:when test="rhogamQ = 'yes' and count(antibodies/antibody) = 1 and (antibodies/antibody) = 'anti-D'">
+                        <xsl:when test="rhogam = 'yes' and count(antibodies/antibody) = 1 and (antibodies/antibody) = 'anti-D'">
                             <p>
                                 -- The presence of anti-D is likely due to antenatal administration of Rh immunoglobulin.  Clinical correlation is necessary. 
                             </p>
