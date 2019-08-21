@@ -10,7 +10,7 @@
                 <p> Blood Bank Summary:
                     <xsl:value-of select="bbSummaries/bbSummary"></xsl:value-of>
                     <xsl:choose>
-                        <xsl:when test="bbSummaries[bbSummary = 'Routine']"> antibody identification and/or blood product special requirements evaluation. Please allow an extra 1-2 hours to find compatible blood for transfusion.</xsl:when>
+                        <xsl:when test="bbSummaries[bbSummary = 'Routine']"> Antibody identification and/or blood product special requirements evaluation. Please allow an extra 1-2 hours to find compatible blood for transfusion.</xsl:when>
                         <xsl:when test="bbSummaries[bbSummary = 'Complex']"> antibody identification and/or blood product special requirements evaluation. Please allow an extra 24 hours to find compatible blood for transfusion.</xsl:when>
                         <xsl:when test="bbSummaries[bbSummary = 'Highly complex']"> antibody identification and/or blood product special requirements evaluation. Please allow an extra 2-3 days to find compatible blood for transfusion.</xsl:when>
                         <xsl:otherwise> (Error! Please choose the appropriate Blood Bank Summary category.) </xsl:otherwise>
