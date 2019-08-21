@@ -10,9 +10,9 @@
                 <p> Blood Bank Summary:
                     <xsl:value-of select="bbSummaries/bbSummary"></xsl:value-of>
                     <xsl:choose>
-                        <xsl:when test="bbSummaries/bbSummary = 'Routine'"> antibody identification and/or blood product special requirements evaluation. Please allow an extra 1-2 hours to find compatible blood for transfusion.</xsl:when>
-                        <xsl:when test="bbSummaries/bbSummary = 'Complex'"> antibody identification and/or blood product special requirements evaluation. Please allow an extra 24 hours to find compatible blood for transfusion.</xsl:when>
-                        <xsl:when test="bbSummaries/bbSummary = 'Highly complex'"> antibody identification and/or blood product special requirements evaluation. Please allow an extra 2-3 days to find compatible blood for transfusion.</xsl:when>
+                        <xsl:when test="bbSummaries[bbSummary = 'Routine']"> antibody identification and/or blood product special requirements evaluation. Please allow an extra 1-2 hours to find compatible blood for transfusion.</xsl:when>
+                        <xsl:when test="bbSummaries[bbSummary = 'Complex']"> antibody identification and/or blood product special requirements evaluation. Please allow an extra 24 hours to find compatible blood for transfusion.</xsl:when>
+                        <xsl:when test="bbSummaries[bbSummary = 'Highly complex']"> antibody identification and/or blood product special requirements evaluation. Please allow an extra 2-3 days to find compatible blood for transfusion.</xsl:when>
                         <xsl:otherwise> (Error! Please choose the appropriate Blood Bank Summary category.) </xsl:otherwise>
                     </xsl:choose>
                 </p>
@@ -25,12 +25,12 @@
                             <xsl:choose>
                                 <xsl:when test="count(antibodies/antibody) > 0">Panel identification
                                     <xsl:choose>
-                                        <xsl:when test="count(antibodies/antibody) = 1 and (antibodies/antibody) = 'warm autoantibody'">reveals a warm autoantibody.</xsl:when>
+                                        <xsl:when test="count(antibodies/antibody) = 1 and antibodies[antibody = 'warm autoantibody']">reveals a warm autoantibody.</xsl:when>
                                         <xsl:otherwise>
                                             <xsl:if test="count(antibodies/antibody) = 1">reveals an </xsl:if>
                                             <xsl:if test="count(antibodies/antibody) > 1">revealed </xsl:if>
                                             <xsl:choose>
-                                                <xsl:when test="count(antibodies/antibody) > 1 and (antibodies/antibody) = 'warm autoantibody'">a </xsl:when>
+                                                <xsl:when test="count(antibodies/antibody) > 1 and antibodies[antibody = 'warm autoantibody']">a </xsl:when>
                                             </xsl:choose>    
                                             <xsl:for-each select="antibodies/antibody">
                                                 <xsl:if test="count(../antibody) > 1 and position() = last()"><xsl:text> and</xsl:text></xsl:if>
@@ -53,8 +53,14 @@
                             <xsl:value-of select="otherAllo/allo"></xsl:value-of>.
                         </xsl:otherwise>
                     </xsl:choose>
-                    The autocontrol was <xsl:value-of select="resultAutoControl/autoControl"/>.
-                    The DAT was <xsl:value-of select="resultDAT/DAT"/>.
+                    <xsl:choose>
+                        <xsl:when test="resultAutoControl/autoControl = 'not performed'"></xsl:when>
+                        <xsl:otherwise>The autocontrol was <xsl:value-of select="resultAutoControl/autoControl"/>. </xsl:otherwise>
+                    </xsl:choose>
+                    <xsl:choose>
+                        <xsl:when test="resultDAT/DAT = 'not performed'"></xsl:when>
+                        <xsl:otherwise>The DAT was <xsl:value-of select="resultDAT/DAT"/>. </xsl:otherwise>
+                    </xsl:choose>
                     <xsl:choose>
                         <xsl:when test="resultAutoControl/autoControl = 'negative' and resultDAT/DAT = 'negative'"> </xsl:when>
                         <xsl:otherwise>
@@ -65,7 +71,7 @@
                                 <xsl:when test="resultEluate/eluate = 'positive for... (specify below)'">The eluate is positive for
                                     <xsl:value-of select="resultEluateAntibodies" />.
                                     <!--xsl:for-each select="antibodies/antibody">
-                                    <xsl:if test="count(../antibody) > 1 and position() = last()"><xsl:text> and</xsl:text></xsl:if>
+                                                                             <xsl:if test="count(../antibody) > 1 and position() = last()"><xsl:text> and</xsl:text></xsl:if>
                                     <xsl:if test="position() > 1"><xsl:text> </xsl:text></xsl:if>
                                     <xsl:value-of select="current()"/>
                                     <xsl:if test="position() != last() and count(../antibody) > 2"><xsl:text>,</xsl:text></xsl:if>   
@@ -75,7 +81,7 @@
                         </xsl:otherwise>    
                     </xsl:choose>
                     <xsl:choose>
-                        <xsl:when test="questionSCD/SCD = 'yes'">The patient's phenotype or predicted phenotype is:
+                        <xsl:when test="questionSCD[SCD = 'yes']">The patient's phenotype or predicted phenotype is:
                             <xsl:for-each select="phenotypeSCD/antigenSCD">
                                 <xsl:if test="count(../antigenSCD) > 1 and position() = last()"><xsl:text> and</xsl:text></xsl:if>
                                 <xsl:if test="position() > 1"><xsl:text> </xsl:text></xsl:if>
@@ -109,7 +115,7 @@
                                 -- The presence of anti-D is likely due to antenatal administration of Rh immunoglobulin.  Clinical correlation is necessary. 
                             </p>
                         </xsl:when>    
-                        <xsl:when test="antibodyScreen = 'positive' and count(antibodies/antibody) = 1 and (antibodies/antibody) = 'anti-M'">
+                        <xsl:when test="antibodyScreen = 'positive' and count(antibodies/antibody) = 1 and antibodies[antibody = 'anti-M']">
                             <p>
                                 -- The patient has antibodies against the M antigen. Anti-M may be naturally occuring and is generally considered to be clinically insignificant, rarely implicated in hemolytic disease of the fetus and newborn.
                             </p>
@@ -128,17 +134,17 @@
                                         </xsl:choose>
                                         developed
                                         <xsl:choose>
-                                            <xsl:when test="count(antibodies/antibody) = 1 and (antibodies/antibody) = 'HTLA'">antibodies against an unspecified antigen that is likely present at a high frequency in the donor population.
+                                            <xsl:when test="count(antibodies/antibody) = 1 and antibodies[antibody = 'HTLA']">antibodies against an unspecified antigen that is likely present at a high frequency in the donor population.
                                                 <p> -- HTLA (high-titer, low-avidity) antibodies are generally considered to be clinically insignificant; however, due to the presence of these antibodies, crossmatch compatible units may be difficult to obtain.
                                                 </p>
                                             </xsl:when>
-                                            <xsl:when test="count(antibodies/antibody) = 1 and (antibodies/antibody) = 'warm autoantibody'">a warm autoantibody. Clinical correlation to rule out immune-mediated hemolysis is recommended.</xsl:when>
+                                            <xsl:when test="count(antibodies/antibody) = 1 and antibodies[antibody = 'warm autoantibody']">a warm autoantibody. Clinical correlation to rule out immune-mediated hemolysis is recommended.</xsl:when>
                                             <xsl:otherwise>antibodies against the
                                                 <xsl:choose>
-                                                    <xsl:when test="count(antigenNeg/antigen) = 0 and (antibodies/antibody) = 'anti-D'">D antigen</xsl:when>
+                                                    <xsl:when test="count(antigenNeg/antigen) = 0 and antibodies[antibody = 'anti-D']">D antigen</xsl:when>
                                                     <xsl:otherwise>
-                                                        <xsl:if test="count(antigenNeg/antigen) = 1 and (antibodies/antibody) = 'anti-D'">D and </xsl:if>
-                                                        <xsl:if test="count(antigenNeg/antigen) > 1 and (antibodies/antibody) = 'anti-D'">D, </xsl:if>
+                                                        <xsl:if test="count(antigenNeg/antigen) = 1 and antibodies[antibody = 'anti-D']">D and </xsl:if>
+                                                        <xsl:if test="count(antigenNeg/antigen) > 1 and antibodies[antibody = 'anti-D']">D, </xsl:if>
                                                         <xsl:for-each select="antigenNeg/antigen">
                                                             <xsl:if test="count(../antigen) > 1 and position() = last()"><xsl:text>and </xsl:text></xsl:if>
                                                             <xsl:value-of select="current()"/><xsl:if test="position() != last()"><xsl:text>, </xsl:text></xsl:if>   
@@ -147,12 +153,12 @@
                                                         <xsl:if test="count(antigenNeg/antigen) > 1"> antigens,</xsl:if>
                                                     </xsl:otherwise>
                                                 </xsl:choose>
-                                                likely as the result of previous transfusion<xsl:if test="genders/gender = 'Female'"> or pregnancy.</xsl:if><xsl:if test="genders/gender = 'Male'">.</xsl:if>
+                                                likely as the result of previous transfusion<xsl:if test="genders[gender = 'Female']"> or pregnancy.</xsl:if><xsl:if test="genders/gender = 'Male'">.</xsl:if>
                                             </xsl:otherwise>
                                         </xsl:choose>
                                     </p>
                                     <xsl:choose>
-                                        <xsl:when test="count(antibodies/antibody) > 1 and antibodyScreen = 'positive' and (antibodies/antibody) = 'HTLA'">
+                                        <xsl:when test="count(antibodies/antibody) > 1 and antibodyScreen = 'positive' and antibodies[antibody = 'HTLA']">
                                             <p>
                                                 -- The patient has developed HTLA (high-titer, low-avidity) antibodies, likely as the result of previous transfusion. HTLA antibodies are generally considered clinically insignificant.
                                             </p>
@@ -160,13 +166,13 @@
                                     </xsl:choose>    
                                     <p>
                                         <xsl:choose>
-                                            <xsl:when test="questionSCD/SCD = 'yes'">
+                                            <xsl:when test="questionSCD[SCD = 'yes']">
                                                 -- In this patient with a history of Sickle Cell disease, the development of these antibodies means that this patient is at increased risk of developing additional antibodies with future transfusions.
-                                                <xsl:if test="genders/gender = 'Female' and age &lt; '51'">This antibody specificity has been associated with hemolytic disease of the fetus and newborn; monitoring is suggested should the patient become pregnant.</xsl:if> 
+                                                <xsl:if test="genders[gender = 'Female'] and age &lt; '51'">This antibody specificity has been associated with hemolytic disease of the fetus and newborn; monitoring is suggested should the patient become pregnant.</xsl:if> 
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 -- The development of these antibodies means that this patient is at increased risk of developing additional antibodies with future transfusions. 
-                                                <xsl:if test="genders/gender = 'Female' and age &lt; '51' and antibodies/antibody[@hdfn= 'true']">This antibody specificity has been associated with hemolytic disease of the fetus and newborn; monitoring is suggested should the patient become pregnant.</xsl:if>
+                                                <xsl:if test="genders[gender = 'Female'] and age &lt; '51' and antibodies/antibody[@hdfn= 'true']">This antibody specificity has been associated with hemolytic disease of the fetus and newborn; monitoring is suggested should the patient become pregnant.</xsl:if>
                                             </xsl:otherwise>    
                                         </xsl:choose>    
                                     </p>
@@ -177,7 +183,7 @@
                     </xsl:choose>    
                 </p>
                 <xsl:choose>
-                    <xsl:when test="questionSCD/SCD = 'yes' and antibodyScreen = 'negative'">
+                    <xsl:when test="questionSCD[SCD = 'yes'] and antibodyScreen = 'negative'">
                         <p>
                             -- The patient has Sickle Cell disease. To limit alloimmunization in a patient likely to receive many transfusions, the patient has been placed on the Sickle Cell Disease Protocol.
                         </p>
@@ -187,15 +193,15 @@
                 <p>
                     -- The blood bank will provide
                     <xsl:choose>
-                        <xsl:when test="aboRhType/aboType = 'O'">Group O, </xsl:when>
+                        <xsl:when test="aboRhType[aboType = 'O']">Group O, </xsl:when>
                         <xsl:otherwise>Group ABO-compatible, </xsl:otherwise>
                     </xsl:choose>
                     <xsl:choose>
-                        <xsl:when test="aboRhType/rhType = 'Rh-negative'">Rh-negative, </xsl:when>
+                        <xsl:when test="aboRhType[rhType = 'Rh-negative']">Rh-negative, </xsl:when>
                         <xsl:otherwise>Rh-compatible, </xsl:otherwise>
                     </xsl:choose>
                     <xsl:choose>
-                        <xsl:when test="questionSCD/SCD = 'yes'">
+                        <xsl:when test="questionSCD[SCD = 'yes']">
                             <xsl:if test="antibodyScreen = 'negative'">C-negative, E-negative, K-negative (if these are negative, per Sickle Cell Disease Protocol), </xsl:if>
                             <xsl:if test="antibodyScreen = 'positive'">C-negative, E-negative, K-negative, Fy(a)-negative, Jk(b)-negative (if these are negative, per Sickle Cell Disease Protocol), </xsl:if>
                         </xsl:when>
@@ -208,8 +214,8 @@
                         </xsl:otherwise>    
                     </xsl:choose>crossmatch compatible
                     <xsl:choose>
-                        <xsl:when test="antibodies/antibody = 'warm autoantibody'">or least incompatible </xsl:when>
-                        <xsl:when test="antibodies/antibody = 'HTLA'">or least incompatible </xsl:when>
+                        <xsl:when test="antibodies[antibody = 'warm autoantibody']">or least incompatible </xsl:when>
+                        <xsl:when test="antibodies[antibody = 'HTLA']">or least incompatible </xsl:when>
                         <xsl:otherwise></xsl:otherwise>
                     </xsl:choose>units should the patient require future transfusion.
                 </p>
