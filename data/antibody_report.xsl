@@ -8,11 +8,11 @@
         <html>
             <body>
                 <p> Blood Bank Summary:
-                    <xsl:value-of select="bbSummaries/bbSummary"></xsl:value-of>
+                    <b><u><xsl:value-of select="bbSummaries/bbSummary"/></u></b>
                     <xsl:choose>
-                        <xsl:when test="bbSummaries[bbSummary = 'Routine']"> antibody identification and/or blood product special requirements evaluation. Please allow an extra 1-2 hours to find compatible blood for transfusion.</xsl:when>
-                        <xsl:when test="bbSummaries[bbSummary = 'Complex']"> antibody identification and/or blood product special requirements evaluation. Please allow an extra 24 hours to find compatible blood for transfusion.</xsl:when>
-                        <xsl:when test="bbSummaries[bbSummary = 'Highly complex']"> antibody identification and/or blood product special requirements evaluation. Please allow an extra 2-3 days to find compatible blood for transfusion.</xsl:when>
+                        <xsl:when test="bbSummaries[bbSummary = 'Routine']"> antibody identification and/or blood product special requirements evaluation. Please allow an <b><u>extra 1-2 hours</u></b> to find compatible blood for transfusion.</xsl:when>
+                        <xsl:when test="bbSummaries[bbSummary = 'Complex']"> antibody identification and/or blood product special requirements evaluation. Please allow an <b><u>extra 24 hours</u></b> to find compatible blood for transfusion.</xsl:when>
+                        <xsl:when test="bbSummaries[bbSummary = 'Highly complex']"> antibody identification and/or blood product special requirements evaluation. Please allow an <b><u>extra 2-3 days</u></b> to find compatible blood for transfusion.</xsl:when>
                         <xsl:otherwise> (Error! Please choose the appropriate Blood Bank Summary category.) </xsl:otherwise>
                     </xsl:choose>
                 </p>
@@ -139,6 +139,23 @@
                                                 </p>
                                             </xsl:when>
                                             <xsl:when test="count(antibodies/antibody) = 1 and antibodies[antibody = 'warm autoantibody']">a warm autoantibody. Clinical correlation to rule out immune-mediated hemolysis is recommended.</xsl:when>
+                                            <xsl:when test="count(antibodies/antibody) > 1 and antibodies[antibody = 'warm autoantibody']">a warm autoantibody and antibodies against the
+                                                <xsl:choose>
+                                                    <xsl:when test="count(antigenNeg/antigen) = 0 and antibodies[antibody = 'anti-D']">D antigen likely as the result of previous transfusion<xsl:if test="genders[gender = 'Female']"> or pregnancy.</xsl:if><xsl:if test="genders/gender = 'Male'">.</xsl:if>
+                                                    </xsl:when>
+                                                    <xsl:otherwise>
+                                                        <xsl:if test="count(antigenNeg/antigen) = 1 and antibodies[antibody = 'anti-D']">D and </xsl:if>
+                                                        <xsl:if test="count(antigenNeg/antigen) > 1 and antibodies[antibody = 'anti-D']">D, </xsl:if>
+                                                        <xsl:for-each select="antigenNeg/antigen">
+                                                            <xsl:if test="count(../antigen) > 1 and position() = last()"><xsl:text>and </xsl:text></xsl:if>
+                                                            <xsl:value-of select="current()"/><xsl:if test="position() != last()"><xsl:text>, </xsl:text></xsl:if>   
+                                                        </xsl:for-each>
+                                                        <xsl:if test="count(antigenNeg/antigen) = 1"> antigen,</xsl:if>
+                                                        <xsl:if test="count(antigenNeg/antigen) > 1"> antigens,</xsl:if>
+                                                        likely as the result of previous transfusion<xsl:if test="genders[gender = 'Female']"> or pregnancy.</xsl:if><xsl:if test="genders/gender = 'Male'">.</xsl:if>
+                                                    </xsl:otherwise>
+                                                </xsl:choose>
+                                            </xsl:when>
                                             <xsl:otherwise>antibodies against the
                                                 <xsl:choose>
                                                     <xsl:when test="count(antigenNeg/antigen) = 0 and antibodies[antibody = 'anti-D']">D antigen</xsl:when>
