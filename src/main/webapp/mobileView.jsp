@@ -219,11 +219,11 @@
             $("#responseItems").html("");
             for(var x = 0; x < responseItemElements.length; x++) {
                 if(!reference.questionSCD.scd[0].selected && (responseItemElements[x].name == "phenotypeSCD.antigenSCD")) { continue; }
-                if(reference.questionSCD.scd[0].selected && (responseItemElements[x].name == "antigenNeg.antigen")) { continue; }
+                //if(reference.questionSCD.scd[0].selected && (responseItemElements[x].name == "antigenNeg.antigen")) { continue; }
                 if(!reference.resultEluate.eluate[3].selected && (responseItemElements[x].name == "resultEluateAntibodies.freeValue")) { continue; }
                 // major hack for side-by-side display of antibodies and antigen negative requirements
                 // assumes that antibodies.antibody and antigenNeg.antigen appear in that sequence
-                var $base = !reference.questionSCD.scd[0].selected && (responseItemElements[x].name == "antibodies.antibody" || responseItemElements[x].name == "antigenNeg.antigen") ? $("<div style='display: inline-block; width: 50%;'></div>").appendTo("#responseItems") : $("#responseItems");
+                var $base = (responseItemElements[x].name == "antibodies.antibody" || responseItemElements[x].name == "antigenNeg.antigen") ? $("<div style='display: inline-block; width: 50%;'></div>").appendTo("#responseItems") : $("#responseItems");
                 $("<p class='stem'>" + responseItemElements[x].stem + "</p>").appendTo($base);
                 var $options = $("<p class='options'></p>").appendTo($base);
                 if(responseItemElements[x].type == "radio" || responseItemElements[x].type == "checkbox") {
