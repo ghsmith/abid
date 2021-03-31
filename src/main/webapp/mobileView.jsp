@@ -9,16 +9,16 @@
     <!--meta name="apple-mobile-web-app-capable" content="yes" /-->
     <!--link rel="apple-touch-icon" href="<%=request.getContextPath()%>/apple-touch-icon.png" /-->
     <meta name="viewport" content="width=device-width, initial-scale=1"/> 
-    <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.5.0-rc1/jquery.mobile-1.5.0-rc1.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/mobile/1.5.0-rc1/jquery.mobile-1.5.0-rc1.min.js" integrity="sha256-c3VbCrdCtTHmXYAuxRT4D0Cy5VC/0zBnXVRIvJiV9xo=" crossorigin="anonymous"></script>
 </head>
 
 <body>
     
     <div id="welcome" data-role="page">
         <div data-role="header">
-            <h1>Antibody ID [beta 20190819]</h1>
+            <h3 style="text-align: center;">Antibody ID [beta 20190819]</h3>
         </div>
         <div role="main" class="ui-content">
             <p>Antibody identification reports are important documents in the
@@ -43,7 +43,7 @@
 	
     <div id="currentNode" data-role="page">
         <div data-role="header">
-            <h1>Antibody ID [beta 20190819]</h1>
+            <h3 style="text-align: center;">Antibody ID [beta 20190819]</h3>
         </div>
         <div data-role="tabs" style="padding: 0px">
 
@@ -60,8 +60,8 @@
                 <div id="responseItems">
                 </div>
                 <fieldset class="ui-grid-a">
-                    <div class="ui-block-a"><button class="button-prev" data-icon="arrow-l">Prev</button></div>
-                    <div class="ui-block-b"><button class="button-next" data-icon="arrow-r" data-iconpos="right">Next</button></div>
+                    <div class="ui-block-a"><button class="button-prev" data-icon="ui-icon-arrow-l">Prev</button></div>
+                    <div class="ui-block-b"><button class="button-next" data-icon="ui-icon-arrow-r" data-iconpos="right">Next</button></div>
                 </fieldset>
                 <p>&nbsp;</p>
                 <p><a class="button-reset" href="#" data-role="button">Reset all responses</a></p>
@@ -203,13 +203,14 @@
 
     function renderResponseItemsNoScroll(noScroll) {
 
-        $("#currentNode .button-prev").closest('.ui-btn').addClass('ui-disabled');
-        $("#currentNode .button-next").closest('.ui-btn').addClass('ui-disabled');
-        if(!currentSection.match(/Section 1.*/)) { $("#currentNode .button-prev").closest('.ui-btn').removeClass('ui-disabled'); }
-        if(!currentSection.match(/Section 3.*/)) { $("#currentNode .button-next").closest('.ui-btn').removeClass('ui-disabled'); }
+        $("#currentNode .button-prev").button('disable');
+        $("#currentNode .button-next").button('disable');
+        if(!currentSection.match(/Section 1.*/)) { $("#currentNode .button-prev").button('enable'); }
+        if(!currentSection.match(/Section 3.*/)) { $("#currentNode .button-next").button('enable'); }
         if($(":focus") != null) { $(":focus").blur(); }
         if(!noScroll) {
-            $.mobile.silentScroll(0);
+            //$.mobile.silentScroll(0);
+            window.scrollTo(0, 1);
         }
         
         getResponseItems().then(function() {
@@ -233,7 +234,7 @@
                     // assumes that there are always more antibodies.antibody than antigenNeg.antigen
                     if(responseItemElements[x].name == "antigenNeg.antigen") {
                         for(var z = reference.antigenNeg.antigen.length; z < reference.antibodies.antibody.length; z++) {
-                            $("<div class='ui-checkbox'><label class='ui-btn'>&nbsp;</label></div>").appendTo($fieldset);
+                            $("<input type='checkbox' name='bogus" + z + "' id='bogus" + z + "' disabled='true'/><label for='bogus" + z + "'>n/a</label>").appendTo($fieldset);
                         }
                     }
                     for(var y = 0; y < values.length; y++) {
@@ -257,7 +258,7 @@
                 }    
             }
         
-            $("#responseItems .options").trigger("create");
+            $("#responseItems .options").enhanceWithin();
 
             $("#responseItems input[type='radio']").change(function(e) {
                 $(this).parents("fieldset").find("input").each(function() {
@@ -285,7 +286,7 @@
         
     }
 
-    $("#currentNode").bind("pageinit", function() {
+    $("#currentNode").bind("pagecreate", function() {
 
         getReference().then(getCurrSection).then(renderResponseItems);
 
@@ -295,7 +296,7 @@
         
         $("#currentNode .report").bind("click", function() {
             $("#reportBody").load("<%=request.getContextPath()%>/sampleXLSTServlet", function() {
-                $("#reportBody").trigger("create");
+                $("#reportBody").enhanceWithin();
             });
         });
 
