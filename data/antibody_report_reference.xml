@@ -39,6 +39,8 @@
         <antibody sickleCell="false" hdfn="false" selected="false">warm autoantibody</antibody>
         <antibody sickleCell="false" hdfn="false" selected="false">HTLA</antibody>
         <antibody sickleCell="false" hdfn="true" selected="false">anti-D</antibody>
+        <!-- <antibody sickleCell="false" hdfn="false" clinicallyInsignificant="true" selected="false">anti-Le(a)</antibody>
+        <antibody sickleCell="false" hdfn="false" clinicallyInsignificant="true" selected="false">anti-Le(b)</antibody> -->
         <antibody sickleCell="true" hdfn="true" selected="false">anti-C</antibody>
         <antibody sickleCell="true" hdfn="true" selected="false">anti-c</antibody>
         <antibody sickleCell="true" hdfn="true" selected="false">anti-E</antibody>
@@ -58,6 +60,10 @@
         <antibody sickleCell="false" hdfn="true" selected="false">anti-Lu(b)</antibody>
         <antibody sickleCell="false" hdfn="false" selected="false">anti-hr(B)</antibody>
         <antibody sickleCell="false" hdfn="false" selected="false">anti-hr(S)</antibody>
+        <!-- TMS additions -->
+        <!-- <antibody sickleCell="false" hdfn="false" clinicallyInsignificant="true" selected="false">anti-Le(a)</antibody>
+        <antibody sickleCell="false" hdfn="false" clinicallyInsignificant="true" selected="false">anti-Le(b)</antibody>
+        <antibody sickleCell="false" hdfn="true" selected="false">anti-N</antibody> -->
     </antibodies>
     <otherAllo section="Serologic Testing" uiControl="radio" stem="Were other antibodies ruled out?">
         <allo selected="false">ruled out</allo>
@@ -89,7 +95,7 @@
     <resultEluateAntibodies section="Serologic Testing" uiControl="text" stem="What are the eluate antibodies?">
         <freeValue/>
     </resultEluateAntibodies>
-    <antigenNeg section="Antibody ID" uiControl="checkbox" stem="Based on the patient's phenotype and antibodies, what are the antigen-negative transfusion requirements?">
+    <antigenNeg section="Antibody ID" uiControl="checkbox" stem="What are the antigen-negative transfusion requirements?">
         <antigen antigenNegFreq="0.32" respectIfAntigenNeg="true" selected="false">C</antigen>
         <antigen antigenNegFreq="0.20" respectIfAntigenNeg="true" selected="false">c</antigen>
         <antigen antigenNegFreq="0.71" respectIfAntigenNeg="true" selected="false">E</antigen>
@@ -109,29 +115,32 @@
         <antigen antigenNegFreq="0.0020" respectIfAntigenNeg="true" selected="false">Lu(b)</antigen>
         <antigen antigenNegFreq="0.020" respectIfAntigenNeg="true" selected="false">hr(B)</antigen>
         <antigen antigenNegFreq="0.020" respectIfAntigenNeg="true" selected="false">hr(S)</antigen>
+        <!-- <antigen sickleCell="false" hdfn="false" respectIfAntigenNeg="false" clinicallyInsignificant="true" selected="false" disabled="true">Le(a)</antigen>
+        <antigen sickleCell="false" hdfn="false" respectIfAntigenNeg="false" clinicallyInsignificant="true" selected="false" disabled="true">Le(b)</antigen>
+        <antigen sickleCell="false" hdfn="false" respectIfAntigenNeg="false" clinicallyInsignificant="true" selected="false" disabled="true">N</antigen> -->
     </antigenNeg>
-    <phenotypeSCD section="Antibody ID" uiControl="checkbox" stem="For patients with sickle cell disease, what is the patient's phenotype?">
-        <antigenSCD antigenNegFreq="1" selected="false">C-positive</antigenSCD>
+    <phenotypeSCD section="Antibody ID" uiControl="checkbox" stem="If there was a phenotype, what is the patient's phenotype?">
+        <!-- <antigenSCD antigenNegFreq="1" selected="false">C-positive</antigenSCD> -->
         <antigenSCD antigenNegFreq="0.32" selected="false">C-negative</antigenSCD>
-        <antigenSCD antigenNegFreq="1" selected="false">c-positive</antigenSCD>
+        <!-- <antigenSCD antigenNegFreq="1" selected="false">c-positive</antigenSCD> -->
         <antigenSCD antigenNegFreq="0.20" selected="false">c-negative</antigenSCD>
-        <antigenSCD antigenNegFreq="1" selected="false">E-positive</antigenSCD>
+       <!-- <antigenSCD antigenNegFreq="1" selected="false">E-positive</antigenSCD> -->
         <antigenSCD antigenNegFreq="0.71" selected="false">E-negative</antigenSCD>
-        <antigenSCD antigenNegFreq="1" selected="false">e-positive</antigenSCD>
+       <!-- <antigenSCD antigenNegFreq="1" selected="false">e-positive</antigenSCD> -->
         <antigenSCD antigenNegFreq="0.020" selected="false">e-negative</antigenSCD>
-        <antigenSCD antigenNegFreq="1" selected="false">K-positive</antigenSCD>
+       <!-- <antigenSCD antigenNegFreq="1" selected="false">K-positive</antigenSCD> -->
         <antigenSCD antigenNegFreq="0.91" selected="false">K-negative</antigenSCD>
-        <antigenSCD antigenNegFreq="1" selected="false">Fy(a)-positive</antigenSCD>
+       <!-- <antigenSCD antigenNegFreq="1" selected="false">Fy(a)-positive</antigenSCD> -->
         <antigenSCD antigenNegFreq="0.34" selected="false">Fy(a)-negative</antigenSCD>
-        <antigenSCD antigenNegFreq="1" selected="false">Fy(b)-positive</antigenSCD>
+       <!-- <antigenSCD antigenNegFreq="1" selected="false">Fy(b)-positive</antigenSCD> -->
         <antigenSCD antigenNegFreq="0.17" selected="false">Fy(b)-negative</antigenSCD>
-        <antigenSCD antigenNegFreq="1" selected="false">Jk(a)-positive</antigenSCD>
+       <!-- <antigenSCD antigenNegFreq="1" selected="false">Jk(a)-positive</antigenSCD> -->
         <antigenSCD antigenNegFreq="0.23" selected="false">Jk(a)-negative</antigenSCD>
-        <antigenSCD antigenNegFreq="1" selected="false">Jk(b)-positive</antigenSCD>
+       <!-- <antigenSCD antigenNegFreq="1" selected="false">Jk(b)-positive</antigenSCD> -->
         <antigenSCD antigenNegFreq="0.26" selected="false">Jk(b)-negative</antigenSCD>
-        <antigenSCD antigenNegFreq="1" selected="false">S-positive</antigenSCD>
+       <!-- <antigenSCD antigenNegFreq="1" selected="false">S-positive</antigenSCD> -->
         <antigenSCD antigenNegFreq="0.45" selected="false">S-negative</antigenSCD>
-        <antigenSCD antigenNegFreq="1" selected="false">s-positive</antigenSCD>
+       <!-- <antigenSCD antigenNegFreq="1" selected="false">s-positive</antigenSCD> -->
         <antigenSCD antigenNegFreq="0.11" selected="false">s-negative</antigenSCD>
     </phenotypeSCD>
     <!--antigenFreq>

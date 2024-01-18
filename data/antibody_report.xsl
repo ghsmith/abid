@@ -123,6 +123,12 @@
                                 -- Although antigen-negative (M-negative) units are not required for this patient, acquiring crossmatch compatible units may take additional time due to the presence of this antibody.    
                             </p>
                         </xsl:when>
+                        <!-- <xsl:when test="antibodyScreen = 'positive' and (antibodies[antibody = 'anti-Le(a)'] or antibodies[antibody = 'anti-Le(b)'] )"> -->
+                            <!-- <p> -->
+                            <!-- <xsl:if test="count(antibodies[antibody = 'anti-Le(a)'] and antibodies[antibody = 'anti-Le(a)']) > 1">Hello Darkness my only friend </xsl:if> -->
+                                <!--  -->
+                            <!-- </p> -->
+                        <!-- </xsl:when> -->
                         <xsl:otherwise>
                             <xsl:choose>
                                 <xsl:when test="antibodyScreen = 'positive'">
@@ -219,8 +225,18 @@
                     </xsl:choose>
                     <xsl:choose>
                         <xsl:when test="questionSCD[SCD = 'yes']">
-                            <xsl:if test="antibodyScreen = 'negative'">C-negative, E-negative, K-negative (if these are negative, per Sickle Cell Disease Protocol), </xsl:if>
-                            <xsl:if test="antibodyScreen = 'positive'">C-negative, E-negative, K-negative, Fy(a)-negative, Jk(b)-negative (if these are negative, per Sickle Cell Disease Protocol), </xsl:if>
+                             <xsl:for-each select="antigenNeg/antigen[@respectIfAntigenNeg = 'true']">
+                                <xsl:if test="count(../antigen) > 1 and position() = last()"></xsl:if>
+                                <xsl:if test="position() > 1"><xsl:text> </xsl:text></xsl:if>
+                                <xsl:if test="not(current() = 'C' or current() = 'E' or current() = 'e' or current() = 'c' or current() = 'K' or current() = 'Fy(a)' or current() = 'Fy(b)' or current() = 'Jk(a)' or current() = 'Jk(b)' or current() = 'S' )">
+                                    <xsl:value-of select="current()"></xsl:value-of><xsl:text>-negative, </xsl:text> 
+                                </xsl:if>
+                            </xsl:for-each> 
+                            <xsl:if test="antibodyScreen = 'negative'"> C/c, E/e, K matched, sickle negative </xsl:if>
+
+                            <xsl:if test="antibodyScreen = 'positive'">C/c, E/e, K, Fy(a), Jk(a)/(b), S matched, sickle negative </xsl:if>
+<!--                            <xsl:if test="antibodyScreen = 'negative'">C-negative, E-negative, K-negative (if these are negative, per Sickle Cell Disease Protocol), </xsl:if>
+                            <xsl:if test="antibodyScreen = 'positive'">C-negative, E-negative, K-negative, Fy(a)-negative, Jk(b)-negative (if these are negative, per Sickle Cell Disease Protocol), </xsl:if>-->
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:for-each select="antigenNeg/antigen[@respectIfAntigenNeg = 'true']">
